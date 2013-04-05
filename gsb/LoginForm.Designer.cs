@@ -69,6 +69,7 @@
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordText);
             this.Controls.Add(this.loginText);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 9, 9);
