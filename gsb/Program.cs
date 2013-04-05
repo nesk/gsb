@@ -16,6 +16,10 @@ namespace gsb
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            LoginForm loginForm = new LoginForm();
+            Application.Run(loginForm);
+            
             Application.Run(new MainForm());
         }
     }

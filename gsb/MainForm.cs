@@ -15,9 +15,6 @@ namespace gsb
         public MainForm()
         {
             InitializeComponent();
-
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
         }
     }
 }
