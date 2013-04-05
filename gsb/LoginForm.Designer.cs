@@ -46,9 +46,9 @@
             this.passwordText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordText.Location = new System.Drawing.Point(13, 45);
             this.passwordText.Name = "passwordText";
-            this.passwordText.PasswordChar = '*';
             this.passwordText.Size = new System.Drawing.Size(200, 26);
             this.passwordText.TabIndex = 1;
+            this.passwordText.UseSystemPasswordChar = true;
             // 
             // loginButton
             // 
