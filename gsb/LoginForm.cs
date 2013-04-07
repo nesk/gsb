@@ -12,9 +12,30 @@ namespace gsb
 {
     public partial class LoginForm : Form
     {
+        /*
+         * Properties
+         */
+
+        String defaultLogin;
+        String defaultPassword;
+
+        /*
+         * Constructor
+         */
+
         public LoginForm()
         {
             InitializeComponent();
+        }
+
+        /*
+         * Events
+         */
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            this.defaultLogin = this.loginText.Text;
+            this.defaultPassword = this.passwordText.Text;
         }
     }
 }
