@@ -92,6 +92,7 @@
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 9, 9);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GSB - Connexion";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
