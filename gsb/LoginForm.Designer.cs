@@ -57,6 +57,7 @@
             this.loginButton.TabIndex = 2;
             this.loginButton.Text = "Connexion";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // label1
             // 
@@ -78,6 +79,7 @@
             // 
             // LoginForm
             // 
+            this.AcceptButton = this.loginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -94,7 +96,6 @@
             this.Padding = new System.Windows.Forms.Padding(0, 0, 9, 9);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GSB - Connexion";
-            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

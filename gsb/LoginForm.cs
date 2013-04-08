@@ -13,13 +13,6 @@ namespace gsb
     public partial class LoginForm : Form
     {
         /*
-         * Properties
-         */
-
-        String defaultLogin;
-        String defaultPassword;
-
-        /*
          * Constructor
          */
 
@@ -29,13 +22,11 @@ namespace gsb
         }
 
         /*
-         * Events
+         * Event handlers
          */
 
-        private void LoginForm_Load(object sender, EventArgs e)
+        private void loginButton_Click(object sender, EventArgs e)
         {
-            this.defaultLogin = this.loginText.Text;
-            this.defaultPassword = this.passwordText.Text;
         }
     }
 }
