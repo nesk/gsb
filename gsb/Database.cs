@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.ProviderBase;
 
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
@@ -20,6 +21,7 @@ namespace gsb
 
         private static Database instance = null;
         private static readonly object padlock = new object();
+        private static DbProviderFactory factory;
 
         /*
          * Fields
@@ -35,9 +37,9 @@ namespace gsb
         {
             String name = ConfigurationManager.AppSettings["connectionName"];
             ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[name];
-            DbProviderFactory factory = DbProviderFactories.GetFactory(settings.ProviderName);
+            Database.factory = DbProviderFactories.GetFactory(settings.ProviderName);
 
-            this.connection = factory.CreateConnection();
+            this.connection = Database.factory.CreateConnection();
             this.connection.ConnectionString = settings.ConnectionString;
 
             this.connection.Open();
@@ -65,6 +67,41 @@ namespace gsb
             {
                 return connection;
             }
+        }
+
+        /*
+         * Static methods
+         */
+
+        public static DbParameter createParameter(string name, DbType type, object value)
+        {
+            DbParameter param = Database.factory.CreateParameter();
+            param.ParameterName = name;
+            param.DbType = type;
+            param.Value = value;
+
+            return param;
+        }
+
+        /*
+         * Methods
+         */
+
+        public Boolean connectUser(string login, string password)
+        {
+            DbCommand cmd = this.connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM Visiteur WHERE login=@login AND mdp=@password";
+
+            cmd.Parameters.Add(Database.createParameter("@login", DbType.String, login));
+            cmd.Parameters.Add(Database.createParameter("@password", DbType.String, password));
+
+            DbDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                
+            }
+            reader.Close();
+            return true;
         }
     }
 }
