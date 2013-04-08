@@ -15,37 +15,17 @@ namespace gsb
     sealed class Database
     {
         /*
-         * Static properties
+         * Static fields
          */
 
         private static Database instance = null;
         private static readonly object padlock = new object();
 
-        public static Database Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null) instance = new Database();
-                    return instance;
-                }
-            }
-        }
-        
         /*
-         * Properties
+         * Fields
          */
 
         private DbConnection connection;
-
-        public DbConnection Connection
-        {
-            get
-            {
-                return connection;
-            }
-        }
 
         /*
          * Constructor
@@ -61,6 +41,30 @@ namespace gsb
             this.connection.ConnectionString = settings.ConnectionString;
 
             this.connection.Open();
+        }
+
+        /*
+         * Properties
+         */
+
+        public static Database Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null) instance = new Database();
+                    return instance;
+                }
+            }
+        }
+
+        public DbConnection Connection
+        {
+            get
+            {
+                return connection;
+            }
         }
     }
 }
