@@ -7,7 +7,7 @@ namespace gsb
 {
     public enum UserConnectionState
     {
-        Success, WrongCredentials, SeveralResults
+        Success, WrongCredentials
     }
 
     sealed class Database
@@ -102,30 +102,18 @@ namespace gsb
             cmd.Parameters.Add(Database.createParameter("@login", DbType.String, login));
             cmd.Parameters.Add(Database.createParameter("@password", DbType.String, password));
 
-            int rows = 0;
-
             DbDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            if (reader.Read())
             {
-                rows++;
                 this.userId = (string)reader["id"];
-            }
-            reader.Close();
-
-            if (rows == 0)
-            {
-                this.userId = null;
-                return UserConnectionState.WrongCredentials;
-            }
-            else if (rows == 1)
-            {
                 this.userConnected = true;
+                reader.Close();
                 return UserConnectionState.Success;
             }
             else
             {
-                this.userId = null;
-                return UserConnectionState.SeveralResults;
+                reader.Close();
+                return UserConnectionState.WrongCredentials;
             }
         }
     }
