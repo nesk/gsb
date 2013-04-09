@@ -8,18 +8,16 @@ namespace gsb
     sealed class Database
     {
         /*
-         * Static fields
+         * Fields
          */
 
         private static Database instance = null;
         private static readonly object padlock = new object();
         private static DbProviderFactory factory;
 
-        /*
-         * Fields
-         */
-
-        private DbConnection connection;
+        private DbConnection dbConnection;
+        private Boolean userConnected = false;
+        private string userId = null;
 
         /*
          * Constructor
@@ -31,10 +29,19 @@ namespace gsb
             ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[name];
             Database.factory = DbProviderFactories.GetFactory(settings.ProviderName);
 
-            this.connection = Database.factory.CreateConnection();
-            this.connection.ConnectionString = settings.ConnectionString;
+            this.dbConnection = Database.factory.CreateConnection();
+            this.dbConnection.ConnectionString = settings.ConnectionString;
 
-            this.connection.Open();
+            this.dbConnection.Open();
+        }
+
+        /*
+         * Enums
+         */
+
+        public enum UserConnectionState
+        {
+            Success, WrongCredentials, SeveralResults
         }
 
         /*
@@ -53,16 +60,32 @@ namespace gsb
             }
         }
 
-        public DbConnection Connection
+        public DbConnection DbConnection
         {
             get
             {
-                return connection;
+                return dbConnection;
+            }
+        }
+
+        public Boolean UserConnected
+        {
+            get
+            {
+                return userConnected;
+            }
+        }
+
+        public string UserId
+        {
+            get
+            {
+                return userId;
             }
         }
 
         /*
-         * Static methods
+         * Methods
          */
 
         public static DbParameter createParameter(string name, DbType type, object value)
@@ -75,25 +98,39 @@ namespace gsb
             return param;
         }
 
-        /*
-         * Methods
-         */
-
-        public Boolean connectUser(string login, string password)
+        public UserConnectionState connectUser(string login, string password)
         {
-            DbCommand cmd = this.connection.CreateCommand();
-            cmd.CommandText = "SELECT * FROM Visiteur WHERE login=@login AND mdp=@password";
+            DbCommand cmd = this.dbConnection.CreateCommand();
+            cmd.CommandText = "SELECT id FROM Visiteur WHERE login=@login AND mdp=@password";
 
             cmd.Parameters.Add(Database.createParameter("@login", DbType.String, login));
             cmd.Parameters.Add(Database.createParameter("@password", DbType.String, password));
 
+            int rows = 0;
+
             DbDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                
+                rows++;
+                this.userId = (string)reader["id"];
             }
             reader.Close();
-            return true;
+
+            if (rows == 0)
+            {
+                this.userId = null;
+                return UserConnectionState.WrongCredentials;
+            }
+            else if (rows == 1)
+            {
+                this.userConnected = true;
+                return UserConnectionState.Success;
+            }
+            else
+            {
+                this.userId = null;
+                return UserConnectionState.SeveralResults;
+            }
         }
     }
 }
