@@ -16,8 +16,9 @@ namespace gsb
 
             LoginForm loginForm = new LoginForm();
             Application.Run(loginForm);
-            
-            Application.Run(new MainForm());
+
+            if(Database.Instance.UserConnected)
+                Application.Run(new MainForm());
         }
     }
 }
