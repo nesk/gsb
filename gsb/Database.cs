@@ -5,6 +5,11 @@ using System.Data.Common;
 
 namespace gsb
 {
+    public enum UserConnectionState
+    {
+        Success, WrongCredentials, SeveralResults
+    }
+
     sealed class Database
     {
         /*
@@ -33,15 +38,6 @@ namespace gsb
             this.dbConnection.ConnectionString = settings.ConnectionString;
 
             this.dbConnection.Open();
-        }
-
-        /*
-         * Enums
-         */
-
-        public enum UserConnectionState
-        {
-            Success, WrongCredentials, SeveralResults
         }
 
         /*
