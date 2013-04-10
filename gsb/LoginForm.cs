@@ -21,7 +21,7 @@ namespace gsb
         private void loginButton_Click(object sender, EventArgs e)
         {
             Database db = Database.Instance;
-            UserConnectionState res = db.connectUser(this.loginText.Text, this.passwordText.Text);
+            UserConnectionState res = db.ConnectUser(this.loginText.Text, this.passwordText.Text);
 
             if (res == UserConnectionState.Success)
                 this.Close();

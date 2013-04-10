@@ -7,7 +7,7 @@ namespace gsb.Entities
 {
     static class Expenses
     {
-        static public List<ExpenseNote> getExpenseNotes()
+        public static List<ExpenseNote> GetExpenseNotes()
         {
             Database db = Database.Instance;
             DbConnection connection = db.DbConnection;
@@ -20,7 +20,7 @@ namespace gsb.Entities
 
             DbCommand cmd = connection.CreateCommand();
             cmd.CommandText = query;
-            cmd.Parameters.Add(Database.createParameter("@userId", DbType.String, db.UserId));
+            cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, db.UserId));
 
             List<ExpenseNote> expenseNoteList = new List<ExpenseNote>();
 

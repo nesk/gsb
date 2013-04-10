@@ -84,7 +84,7 @@ namespace gsb
          * Methods
          */
 
-        public static DbParameter createParameter(string name, DbType type, object value)
+        public static DbParameter CreateParameter(string name, DbType type, object value)
         {
             DbParameter param = Database.factory.CreateParameter();
             param.ParameterName = name;
@@ -94,14 +94,14 @@ namespace gsb
             return param;
         }
 
-        public UserConnectionState connectUser(string login, string password)
+        public UserConnectionState ConnectUser(string login, string password)
         {
             const string query = "SELECT id FROM Visiteur WHERE login=@login AND mdp=@password";
             
             DbCommand cmd = this.dbConnection.CreateCommand();
             cmd.CommandText = query;
-            cmd.Parameters.Add(Database.createParameter("@login", DbType.String, login));
-            cmd.Parameters.Add(Database.createParameter("@password", DbType.String, password));
+            cmd.Parameters.Add(Database.CreateParameter("@login", DbType.String, login));
+            cmd.Parameters.Add(Database.CreateParameter("@password", DbType.String, password));
 
             DbDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
