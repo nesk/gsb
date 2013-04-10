@@ -13,10 +13,10 @@ namespace gsb.Entities
             DbConnection connection = db.DbConnection;
 
             const string query =
-                "SELECT f.nbJustificatifs, f.montantValide, f.dateModif, e.libelle AS etat " +
-                "FROM FicheFrais AS f" +
+                "SELECT dateModif AS date, nbJustificatifs AS vouchers, montantValide AS amount, libelle AS state " +
+                "FROM FicheFrais AS f " +
                 "JOIN Etat AS e ON e.id = f.idEtat " +
-                "WHERE ffr.idVisiteur = @userId";
+                "WHERE f.idVisiteur = @userId";
 
             DbCommand cmd = connection.CreateCommand();
             cmd.CommandText = query;
