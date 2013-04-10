@@ -96,9 +96,10 @@ namespace gsb
 
         public UserConnectionState connectUser(string login, string password)
         {
+            const string query = "SELECT id FROM Visiteur WHERE login=@login AND mdp=@password";
+            
             DbCommand cmd = this.dbConnection.CreateCommand();
-            cmd.CommandText = "SELECT id FROM Visiteur WHERE login=@login AND mdp=@password";
-
+            cmd.CommandText = query;
             cmd.Parameters.Add(Database.createParameter("@login", DbType.String, login));
             cmd.Parameters.Add(Database.createParameter("@password", DbType.String, password));
 
