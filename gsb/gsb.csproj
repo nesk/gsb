@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="Entities\ExpenseBase.cs" />
     <Compile Include="Entities\ExpenseNote.cs" />
     <Compile Include="Entities\ExpenseOffPlan.cs" />
     <Compile Include="Entities\Expenses.cs" />
