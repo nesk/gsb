@@ -46,6 +46,7 @@
     <Compile Include="Database.cs" />
     <Compile Include="Entities\ExpenseNote.cs" />
     <Compile Include="Entities\ExpenseOffPlan.cs" />
+    <Compile Include="Entities\Expenses.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
