@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Common;
 
 namespace gsb.Entities
@@ -23,7 +24,7 @@ namespace gsb.Entities
          * Constructors
          */
 
-        public ExpenseNote(DbDataReader row)
+        public ExpenseNote(Dictionary<string, object> row)
         {
             this.Fill(row);
         }
@@ -32,7 +33,7 @@ namespace gsb.Entities
          * Methods
          */
 
-        public override void Fill(DbDataReader row)
+        public override void Fill(Dictionary<string, object> row)
         {
             this.newEntity = false;
 

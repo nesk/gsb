@@ -22,14 +22,13 @@ namespace gsb.Entities
             cmd.CommandText = query;
             cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, db.UserId));
 
-            List<ExpenseNote> expenseNoteList = new List<ExpenseNote>();
-
             DbDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                expenseNoteList.Add(new ExpenseNote(reader));
-            }
+            List<Dictionary<string, object>> rows = Database.GetDataReaderRows(reader);
             reader.Close();
+
+            List<ExpenseNote> expenseNoteList = new List<ExpenseNote>();
+            foreach (Dictionary<string, object> row in rows)
+                expenseNoteList.Add(new ExpenseNote(row));
 
             return expenseNoteList;
         }
