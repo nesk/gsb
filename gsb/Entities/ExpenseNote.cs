@@ -11,8 +11,7 @@ namespace gsb.Entities
          * Fields
          */
 
-        private bool newEntity = true;
-        private bool modified = false;
+        private ExpenseState status = ExpenseState.New;
 
         #region Data fields
         private DateTime date;
@@ -41,7 +40,7 @@ namespace gsb.Entities
 
         public override void Fill(Dictionary<string, object> row)
         {
-            this.newEntity = false;
+            this.status = ExpenseState.Loaded;
 
             this.date = (DateTime)row["date"];
             this.vouchersNb = (int)row["vouchers"];

@@ -4,6 +4,11 @@ using System.Data.Common;
 
 namespace gsb.Entities
 {
+    public enum ExpenseState
+    {
+        New, Loaded, Modified, Removed
+    }
+
     abstract class ExpenseBase
     {
         public abstract void Fill(Dictionary<string, object> row);
