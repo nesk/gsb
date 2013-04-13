@@ -32,6 +32,7 @@ namespace gsb.Entities
         {
             this.Fill(row);
             this.LoadExpensesInPlan();
+            this.LoadExpensesOffPlan();
         }
 
         /*
@@ -87,6 +88,30 @@ namespace gsb.Entities
             reader.Close();
 
             // Here, throw an error if the expenseInPlan dictionnary does not contain all the IDs specified in the validIDs array.
+        }
+
+        private void LoadExpensesOffPlan()
+        {
+            Database db = Database.Instance;
+            DbConnection connection = db.DbConnection;
+
+            const string query =
+                "SELECT id, libelle AS label, date, montant AS cost " +
+                "FROM LigneFraisHorsForfait " +
+                "WHERE idVisiteur = @userId " +
+                "AND mois = @month";
+
+            DbCommand cmd = connection.CreateCommand();
+            cmd.CommandText = query;
+            cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, db.UserId));
+            cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, this.date.Year.ToString().PadLeft(4, '0') + this.date.Month.ToString().PadLeft(2, '0')));
+
+            DbDataReader reader = cmd.ExecuteReader();
+            List<Dictionary<string, object>> rows = Database.GetDataReaderRows(reader);
+            reader.Close();
+
+            foreach (Dictionary<string, object> row in rows)
+                this.expensesOffPlan.Add(new ExpenseOffPlan(row));
         }
     }
 }
