@@ -9,8 +9,6 @@ namespace gsb.Entities
          * Fields
          */
 
-        private ExpenseState status = ExpenseState.New;
-
         #region Data fields
         private int id;
         private string label;

@@ -11,8 +11,6 @@ namespace gsb.Entities
          * Fields
          */
 
-        private ExpenseState status = ExpenseState.New;
-
         #region Data fields
         private DateTime date;
         private int vouchersNb;
@@ -33,6 +31,15 @@ namespace gsb.Entities
             this.Fill(row);
             this.LoadExpensesInPlan();
             this.LoadExpensesOffPlan();
+        }
+
+        /*
+         * Properties
+         */
+
+        public new ExpenseState Status
+        {
+            get { return this.status; }
         }
 
         /*

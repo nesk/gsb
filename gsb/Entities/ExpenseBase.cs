@@ -11,6 +11,30 @@ namespace gsb.Entities
 
     abstract class ExpenseBase
     {
+        /*
+         * Fields
+         */
+
+        protected ExpenseState status = ExpenseState.New;
+
+        /*
+         * Properties
+         */
+
+        public ExpenseState Status
+        {
+            get { return this.status; }
+            set
+            {
+                if (value == ExpenseState.Removed)
+                    this.status = value;
+            }
+        }
+
+        /*
+         * Methods
+         */
+
         public abstract void Fill(Dictionary<string, object> row);
         public abstract bool Save();
 
