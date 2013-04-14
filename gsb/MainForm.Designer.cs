@@ -296,9 +296,6 @@
             // expensesOPList
             // 
             this.expensesOPList.FormattingEnabled = true;
-            this.expensesOPList.Items.AddRange(new object[] {
-            "Elément 1",
-            "Elément 2"});
             this.expensesOPList.Location = new System.Drawing.Point(7, 20);
             this.expensesOPList.Name = "expensesOPList";
             this.expensesOPList.Size = new System.Drawing.Size(154, 82);
