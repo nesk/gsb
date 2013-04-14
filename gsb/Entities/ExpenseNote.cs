@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 
@@ -41,6 +42,58 @@ namespace gsb.Entities
         {
             get { return this.status; }
         }
+
+        #region Data properties
+        public DateTime Date
+        {
+            get { return this.date; }
+            set
+            {
+                this.status = ExpenseState.Modified;
+                this.date = value;
+            }
+        }
+
+        public int VouchersNb
+        {
+            get { return this.vouchersNb; }
+            set
+            {
+                this.status = ExpenseState.Modified;
+                this.vouchersNb = value;
+            }
+        }
+
+        public decimal ApprovedAmount
+        {
+            get { return this.approvedAmount; }
+            set
+            {
+                this.status = ExpenseState.Modified;
+                this.approvedAmount = value;
+            }
+        }
+
+        public string State
+        {
+            get { return this.state; }
+            set
+            {
+                this.status = ExpenseState.Modified;
+                this.state = value;
+            }
+        }
+
+        public ReadOnlyDictionary<string, int> ExpensesInPlan
+        {
+            get { return new ReadOnlyDictionary<string, int>(this.expensesInPlan); }
+        }
+
+        public ReadOnlyCollection<ExpenseOffPlan> ExpensesOffPlan
+        {
+            get { return this.expensesOffPlan.AsReadOnly(); }
+        }
+        #endregion
 
         /*
          * Methods
