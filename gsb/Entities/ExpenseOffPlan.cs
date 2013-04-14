@@ -92,7 +92,7 @@ namespace gsb.Entities
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return this.label;
         }
     }
 }
