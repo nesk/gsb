@@ -51,6 +51,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -59,9 +60,6 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "avril 2013",
-            "mars 2013"});
             this.comboBox1.Location = new System.Drawing.Point(12, 25);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -121,8 +119,9 @@
             this.textBox4.Location = new System.Drawing.Point(327, 25);
             this.textBox4.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(64, 20);
+            this.textBox4.Size = new System.Drawing.Size(61, 20);
             this.textBox4.TabIndex = 7;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox3
             // 
@@ -131,6 +130,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(61, 20);
             this.textBox3.TabIndex = 6;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox2
             // 
@@ -139,6 +139,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(61, 20);
             this.textBox2.TabIndex = 5;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
@@ -199,15 +200,16 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(61, 20);
             this.textBox1.TabIndex = 4;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(223, 25);
+            this.button1.Location = new System.Drawing.Point(198, 23);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(215, 23);
+            this.button1.Size = new System.Drawing.Size(240, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Créer une fiche de frais pour ce mois";
+            this.button1.Text = "Créer une fiche de frais pour le mois courant";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -304,12 +306,23 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(129, 284);
+            this.button2.Location = new System.Drawing.Point(39, 284);
+            this.button2.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(194, 23);
+            this.button2.Size = new System.Drawing.Size(177, 23);
             this.button2.TabIndex = 5;
-            this.button2.Text = "Mettre à jour ma fiche de frais";
+            this.button2.Text = "Sauvegarder ma fiche de frais";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(234, 284);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(177, 23);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "Annuler mes modifications";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -317,6 +330,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(450, 312);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
@@ -328,6 +342,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GSB - Suivi du remboursement des frais";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -363,6 +378,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button5;
 
     }
 }
