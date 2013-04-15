@@ -23,7 +23,9 @@ namespace gsb
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.expensesSelect.Items.AddRange(Expenses.GetExpenseNotes().ToArray());
+            List<ExpenseNote> expenseNotes = Expenses.GetExpenseNotes();
+            expenseNotes.Sort();
+            this.expensesSelect.Items.AddRange(expenseNotes.ToArray());
 
             if(this.expensesSelect.Items.Count > 0)
                 this.expensesSelect.SelectedIndex = 0;
@@ -56,6 +58,7 @@ namespace gsb
 
             ExpenseOffPlan[] expensesOffPlan = new ExpenseOffPlan[expense.ExpensesOffPlan.Count];
             expense.ExpensesOffPlan.CopyTo(expensesOffPlan, 0);
+            Array.Sort(expensesOffPlan);
             this.expensesOPList.Items.Clear();
             this.expensesOPList.Items.AddRange(expensesOffPlan);
 

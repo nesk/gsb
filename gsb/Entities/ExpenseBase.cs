@@ -9,7 +9,7 @@ namespace gsb.Entities
         New, Loaded, Modified, Removed
     }
 
-    abstract class ExpenseBase
+    abstract class ExpenseBase : IComparable
     {
         /*
          * Fields
@@ -37,6 +37,7 @@ namespace gsb.Entities
 
         public abstract void Fill(Dictionary<string, object> row);
         public abstract bool Save();
+        public abstract int CompareTo(object obj);
 
         // Forces the overriding of the ToString() method
         public abstract override string ToString();

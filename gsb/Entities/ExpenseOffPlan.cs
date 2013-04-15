@@ -90,6 +90,11 @@ namespace gsb.Entities
             throw new NotImplementedException();
         }
 
+        public override int CompareTo(object obj)
+        {
+            return DateTime.Compare(this.date, ((ExpenseOffPlan)obj).date);
+        }
+
         public override string ToString()
         {
             return this.label;

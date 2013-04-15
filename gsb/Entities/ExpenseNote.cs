@@ -114,6 +114,11 @@ namespace gsb.Entities
             throw new NotImplementedException();
         }
 
+        public override int CompareTo(object obj)
+        {
+            return -1 * DateTime.Compare(this.date, ((ExpenseNote)obj).date);
+        }
+
         public override string ToString()
         {
             return this.date.ToString("MMMM yyyy");
