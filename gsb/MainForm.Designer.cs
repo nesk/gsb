@@ -64,6 +64,7 @@
             this.expensesSelect.Name = "expensesSelect";
             this.expensesSelect.Size = new System.Drawing.Size(121, 21);
             this.expensesSelect.TabIndex = 0;
+            this.expensesSelect.SelectedIndexChanged += new System.EventHandler(this.ListControl_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -300,6 +301,7 @@
             this.expensesOPList.Name = "expensesOPList";
             this.expensesOPList.Size = new System.Drawing.Size(154, 82);
             this.expensesOPList.TabIndex = 0;
+            this.expensesOPList.SelectedIndexChanged += new System.EventHandler(this.ListControl_SelectedIndexChanged);
             // 
             // saveExpenseButton
             // 

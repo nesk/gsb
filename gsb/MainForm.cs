@@ -24,10 +24,23 @@ namespace gsb
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.expensesSelect.Items.AddRange(Expenses.GetExpenseNotes().ToArray());
-            this.expensesSelect.SelectedIndex = 0;
 
             if(this.expensesSelect.Items.Count > 0)
-                this.LoadExpenseNote((ExpenseNote)expensesSelect.Items[0]);
+                this.expensesSelect.SelectedIndex = 0;
+        }
+
+        private void ListControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (sender is ComboBox)
+            {
+                ComboBox list = (ComboBox)sender;
+                this.LoadExpenseNote((ExpenseNote)list.SelectedItem);
+            }
+            else
+            {
+                ListBox list = (ListBox)sender;
+                this.LoadExpenseOffPlan((ExpenseOffPlan)list.SelectedItem);
+            }
         }
 
         /*
@@ -43,11 +56,11 @@ namespace gsb
 
             ExpenseOffPlan[] expensesOffPlan = new ExpenseOffPlan[expense.ExpensesOffPlan.Count];
             expense.ExpensesOffPlan.CopyTo(expensesOffPlan, 0);
+            this.expensesOPList.Items.Clear();
             this.expensesOPList.Items.AddRange(expensesOffPlan);
-            this.expensesOPList.SelectedIndex = 0;
 
             if (this.expensesOPList.Items.Count > 0)
-                this.LoadExpenseOffPlan((ExpenseOffPlan)expensesOPList.Items[0]);
+                this.expensesOPList.SelectedIndex = 0;
         }
 
         private void LoadExpenseOffPlan(ExpenseOffPlan expense)
