@@ -59,7 +59,7 @@ namespace gsb
             ExpenseOffPlan[] expensesOffPlan = new ExpenseOffPlan[expense.ExpensesOffPlan.Count];
             expense.ExpensesOffPlan.CopyTo(expensesOffPlan, 0);
             Array.Sort(expensesOffPlan);
-            this.expensesOPList.Items.Clear();
+            this.ClearExpensesOffPlan();
             this.expensesOPList.Items.AddRange(expensesOffPlan);
 
             if (this.expensesOPList.Items.Count > 0)
@@ -71,6 +71,22 @@ namespace gsb
             this.expenseOPDate.Value = expense.Date;
             this.expenseOPLabelText.Text = expense.Label;
             this.expenseOPCostText.Text = expense.Cost.ToString();
+        }
+
+        private void ClearExpensesInPlan()
+        {
+            this.etpText.Text = "";
+            this.kmText.Text = "";
+            this.nuiText.Text = "";
+            this.repText.Text = "";
+        }
+
+        private void ClearExpensesOffPlan()
+        {
+            this.expensesOPList.Items.Clear();
+            this.expenseOPDate.Value = DateTime.Today;
+            this.expenseOPLabelText.Text = "";
+            this.expenseOPCostText.Text = "";
         }
     }
 }
