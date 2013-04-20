@@ -13,10 +13,10 @@ namespace gsb.Entities
          */
 
         #region Data fields
-        private DateTime date;
-        private int vouchersNb;
-        private decimal approvedAmount;
-        private string state;
+        private DateTime date = DateTime.Today;
+        private int vouchersNb = 0;
+        private decimal approvedAmount = 0;
+        private string state = "CR";
 
         private Dictionary<string, int> expensesInPlan = new Dictionary<string,int>();
         
@@ -26,6 +26,14 @@ namespace gsb.Entities
         /*
          * Constructors
          */
+
+        public ExpenseNote()
+        {
+            this.expensesInPlan["ETP"] = 0;
+            this.expensesInPlan["KM"] = 0;
+            this.expensesInPlan["NUI"] = 0;
+            this.expensesInPlan["REP"] = 0;
+        }
 
         public ExpenseNote(Dictionary<string, object> row)
         {
