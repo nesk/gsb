@@ -46,6 +46,7 @@ namespace gsb.Entities
          * Properties
          */
 
+        // An expense note shouldn't be removed, this property must be rewritten.
         public new ExpenseState Status
         {
             get { return this.status; }
@@ -156,11 +157,9 @@ namespace gsb.Entities
             {
                 string id = (string)reader["id"];
                 if (Array.IndexOf(validIDs, id) != -1)
-                    expensesInPlan[id] = (int)reader["quantity"];
+                    this.expensesInPlan[id] = (int)reader["quantity"];
             }
             reader.Close();
-
-            // Here, throw an error if the expenseInPlan dictionnary does not contain all the IDs specified in the validIDs array.
         }
 
         private void LoadExpensesOffPlan()
