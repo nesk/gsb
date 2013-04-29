@@ -120,7 +120,65 @@ namespace gsb.Entities
 
         public override void Save()
         {
-            throw new NotImplementedException();
+            Database db = Database.Instance;
+            DbConnection connection = db.DbConnection;
+            DbCommand cmd = connection.CreateCommand();
+
+            String month = this.date.Year.ToString().PadLeft(4, '0') + this.date.Month.ToString().PadLeft(2, '0');
+
+            cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, db.UserId));
+            cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, month));
+            cmd.Parameters.Add(Database.CreateParameter("@etp", DbType.Int32, this.expensesInPlan["ETP"]));
+            cmd.Parameters.Add(Database.CreateParameter("@km", DbType.Int32, this.expensesInPlan["KM"]));
+            cmd.Parameters.Add(Database.CreateParameter("@nui", DbType.Int32, this.expensesInPlan["NUI"]));
+            cmd.Parameters.Add(Database.CreateParameter("@rep", DbType.Int32, this.expensesInPlan["REP"]));
+
+            if (this.status == ExpenseState.New)
+            {
+                const string query =
+                    // Creates the expense note
+                    "INSERT INTO FicheFrais VALUES " +
+                    "(@userId, @month, @vouchersNb, @amount, @date, @state); " +
+
+                    // Creates the in-plan expenses
+                    "INSERT INTO LigneFraisForfait VALUES " +
+                    "(@userId, @month, 'ETP', @etp), " +
+                    "(@userId, @month, 'KM', @km), " +
+                    "(@userId, @month, 'NUI', @nui), " +
+                    "(@userId, @month, 'REP', @rep)";
+
+                cmd.CommandText = query;
+                cmd.Parameters.Add(Database.CreateParameter("@vouchersNb", DbType.Int32, this.vouchersNb));
+                cmd.Parameters.Add(Database.CreateParameter("@amount", DbType.Int32, this.approvedAmount));
+                cmd.Parameters.Add(Database.CreateParameter("@date", DbType.Date, this.date));
+                cmd.Parameters.Add(Database.CreateParameter("@state", DbType.String, this.state));
+            }
+            else if (this.status == ExpenseState.Modified)
+            {
+                // Updates the in-plan expenses
+                const string query =
+                    "UPDATE FROM LigneFraisForfait " +
+                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='ETP' " +
+                    "SET quantite=@etp;" +
+                    "UPDATE FROM LigneFraisForfait " +
+                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='KM' " +
+                    "SET quantite=@km;" +
+                    "UPDATE FROM LigneFraisForfait " +
+                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='NUI' " +
+                    "SET quantite=@NUI;" +
+                    "UPDATE FROM LigneFraisForfait " +
+                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='REP' " +
+                    "SET quantite=@rep";
+
+                cmd.CommandText = query;
+            }
+
+            // An expense note shouldn't be removed, there's no need to implement this.
+
+            cmd.ExecuteNonQuery();
+
+            // The entity has been saved, the status must be changed.
+            this.status = ExpenseState.Loaded;
         }
 
         public override int CompareTo(object obj)
