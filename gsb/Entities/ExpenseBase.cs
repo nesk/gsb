@@ -36,7 +36,7 @@ namespace gsb.Entities
          */
 
         public abstract void Fill(Dictionary<string, object> row);
-        public abstract bool Save();
+        public abstract void Save();
         public abstract int CompareTo(object obj);
 
         // Forces the overriding of the ToString() method

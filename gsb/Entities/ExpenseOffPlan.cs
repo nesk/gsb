@@ -85,7 +85,7 @@ namespace gsb.Entities
             this.cost = (decimal)row["cost"];
         }
 
-        public override bool Save()
+        public override void Save()
         {
             throw new NotImplementedException();
         }

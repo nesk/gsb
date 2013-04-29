@@ -118,7 +118,7 @@ namespace gsb.Entities
             this.state = (string)row["state"];
         }
 
-        public override bool Save()
+        public override void Save()
         {
             throw new NotImplementedException();
         }
