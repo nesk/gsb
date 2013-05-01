@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 
 namespace gsb.Entities
 {
@@ -87,7 +89,60 @@ namespace gsb.Entities
 
         public override void Save()
         {
-            throw new NotImplementedException();
+            Database db = Database.Instance;
+            DbConnection connection = db.DbConnection;
+            DbCommand cmd = connection.CreateCommand();
+
+            String month = this.date.Year.ToString().PadLeft(4, '0') + this.date.Month.ToString().PadLeft(2, '0');
+
+            if (this.status == ExpenseState.New)
+            {
+                const string query =
+                    "INSERT INTO LigneFraisHorsForfait VALUES " +
+                    "('', @userId, @month, @label, @date, @cost)";
+
+                cmd.CommandText = query;
+                cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, Database.Instance.UserId));
+                cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, month));
+                cmd.Parameters.Add(Database.CreateParameter("@label", DbType.String, this.label));
+                cmd.Parameters.Add(Database.CreateParameter("@date", DbType.Date, this.date));
+                cmd.Parameters.Add(Database.CreateParameter("@cost", DbType.Decimal, this.cost));
+
+                cmd.ExecuteNonQuery(); // We need to immediatly execute the query to obtain the ID below
+
+                const string idQuery = "SELECT SCOPE_IDENTITY()";
+
+                DbCommand idCmd = connection.CreateCommand();
+                idCmd.CommandText = idQuery;
+                
+                this.id = (int)idCmd.ExecuteScalar(); // Storing the id of the last insertion
+
+                return; // We must exit the method to avoid a new call to the ExecuteNonQuery() method
+            }
+            else if (this.status == ExpenseState.Modified)
+            {
+                const string query =
+                    "UPDATE FROM LigneFraisHorsForfait " +
+                    "WHERE id=@id " +
+                    "SET libelle=@label, date=@date, montant=@cost";
+
+                cmd.CommandText = query;
+                cmd.Parameters.Add(Database.CreateParameter("@id", DbType.Int32, this.id));
+                cmd.Parameters.Add(Database.CreateParameter("@label", DbType.String, this.label));
+                cmd.Parameters.Add(Database.CreateParameter("@date", DbType.Date, this.date));
+                cmd.Parameters.Add(Database.CreateParameter("@cost", DbType.Decimal, this.cost));
+            }
+            else if (this.status == ExpenseState.Removed)
+            {
+                const string query =
+                    "DELETE FROM LigneFraisHorsForfait " +
+                    "WHERE id=@id";
+
+                cmd.CommandText = query;
+                cmd.Parameters.Add(Database.CreateParameter("@id", DbType.Int32, this.id));
+            }
+
+            cmd.ExecuteNonQuery();
         }
 
         public override int CompareTo(object obj)
