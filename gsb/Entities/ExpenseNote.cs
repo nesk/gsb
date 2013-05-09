@@ -155,24 +155,23 @@ namespace gsb.Entities
             }
             else if (this.status == ExpenseState.Modified)
             {
-                // Updates the in-plan expenses
+                // Updates only the in-plan expenses
                 const string query =
-                    "UPDATE FROM LigneFraisForfait " +
-                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='ETP' " +
-                    "SET quantite=@etp;" +
-                    "UPDATE FROM LigneFraisForfait " +
-                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='KM' " +
-                    "SET quantite=@km;" +
-                    "UPDATE FROM LigneFraisForfait " +
-                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='NUI' " +
-                    "SET quantite=@NUI;" +
-                    "UPDATE FROM LigneFraisForfait " +
-                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='REP' " +
-                    "SET quantite=@rep";
+                    "UPDATE LigneFraisForfait " +
+                    "SET quantite=@etp " +
+                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='ETP';" +
+                    "UPDATE LigneFraisForfait " +
+                    "SET quantite=@km " +
+                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='KM';" +
+                    "UPDATE LigneFraisForfait " +
+                    "SET quantite=@NUI " +
+                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='NUI';" +
+                    "UPDATE LigneFraisForfait " +
+                    "SET quantite=@rep " +
+                    "WHERE idVisiteur=@userId AND mois=@month AND idFraisForfait='REP'";
 
                 cmd.CommandText = query;
             }
-
             // An expense note shouldn't be removed, there's no need to implement this.
 
             cmd.ExecuteNonQuery();

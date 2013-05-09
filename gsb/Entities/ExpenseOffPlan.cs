@@ -122,9 +122,9 @@ namespace gsb.Entities
             else if (this.status == ExpenseState.Modified)
             {
                 const string query =
-                    "UPDATE FROM LigneFraisHorsForfait " +
-                    "WHERE id=@id " +
-                    "SET libelle=@label, date=@date, montant=@cost";
+                    "UPDATE LigneFraisHorsForfait " +
+                    "SET libelle=@label, date=@date, montant=@cost " +
+                    "WHERE id=@id";
 
                 cmd.CommandText = query;
                 cmd.Parameters.Add(Database.CreateParameter("@id", DbType.Int32, this.id));
