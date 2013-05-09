@@ -108,6 +108,15 @@ namespace gsb.Entities
          * Methods
          */
 
+        public ExpenseOffPlan AddExpenseOffPlan()
+        {
+            this.status = ExpenseState.Modified;
+
+            ExpenseOffPlan expense = new ExpenseOffPlan();
+            this.expensesOffPlan.Add(expense);
+            return expense;
+        }
+
         public override void Fill(Dictionary<string, object> row)
         {
             this.status = ExpenseState.Loaded;
