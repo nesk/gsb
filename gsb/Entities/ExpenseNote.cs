@@ -183,7 +183,18 @@ namespace gsb.Entities
             }
             // An expense note shouldn't be removed, there's no need to implement this.
 
-            cmd.ExecuteNonQuery();
+            if (this.status == ExpenseState.New || this.status == ExpenseState.Modified)
+            {
+                cmd.ExecuteNonQuery();
+
+                // Saves the off-plan expenses
+                foreach (ExpenseOffPlan expense in this.expensesOffPlan)
+                {
+                    expense.Save();
+                    if (expense.Status == ExpenseState.Removed)
+                        this.expensesOffPlan.Remove(expense);
+                }
+            }
 
             // The entity has been saved, the status must be changed.
             this.status = ExpenseState.Loaded;

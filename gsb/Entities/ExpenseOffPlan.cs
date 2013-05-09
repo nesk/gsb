@@ -144,7 +144,11 @@ namespace gsb.Entities
                 cmd.Parameters.Add(Database.CreateParameter("@id", DbType.Int32, this.id));
             }
 
-            cmd.ExecuteNonQuery();
+            if(this.status == ExpenseState.New || this.status == ExpenseState.Modified || this.status == ExpenseState.Removed)
+                cmd.ExecuteNonQuery();
+
+            // The entity has been saved, the status must be changed.
+            this.status = ExpenseState.Loaded;
         }
 
         public override int CompareTo(object obj)
