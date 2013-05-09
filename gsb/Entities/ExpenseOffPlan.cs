@@ -39,7 +39,7 @@ namespace gsb.Entities
             get { return this.id; }
             set
             {
-                this.status = ExpenseState.Modified;
+                this.setModifiedStatus();
                 this.id = value;
             }
         }
@@ -49,7 +49,7 @@ namespace gsb.Entities
             get { return this.label; }
             set
             {
-                this.status = ExpenseState.Modified;
+                this.setModifiedStatus();
                 this.label = value;
             }
         }
@@ -59,7 +59,7 @@ namespace gsb.Entities
             get { return this.date; }
             set
             {
-                this.status = ExpenseState.Modified;
+                this.setModifiedStatus();
                 this.date = value;
             }
         }
@@ -69,7 +69,7 @@ namespace gsb.Entities
             get { return this.cost; }
             set
             {
-                this.status = ExpenseState.Modified;
+                this.setModifiedStatus();
                 this.cost = value;
             }
         }

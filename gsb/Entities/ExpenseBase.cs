@@ -41,5 +41,11 @@ namespace gsb.Entities
 
         // Forces the overriding of the ToString() method
         public abstract override string ToString();
+
+        protected void setModifiedStatus()
+        {
+            if (this.status != ExpenseState.New && this.status != ExpenseState.Removed)
+                this.status = ExpenseState.Modified;
+        }
     }
 }

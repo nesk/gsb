@@ -58,7 +58,7 @@ namespace gsb.Entities
             get { return this.date; }
             set
             {
-                this.status = ExpenseState.Modified;
+                this.setModifiedStatus();
                 this.date = value;
             }
         }
@@ -68,7 +68,7 @@ namespace gsb.Entities
             get { return this.vouchersNb; }
             set
             {
-                this.status = ExpenseState.Modified;
+                this.setModifiedStatus();
                 this.vouchersNb = value;
             }
         }
@@ -78,7 +78,7 @@ namespace gsb.Entities
             get { return this.approvedAmount; }
             set
             {
-                this.status = ExpenseState.Modified;
+                this.setModifiedStatus();
                 this.approvedAmount = value;
             }
         }
@@ -88,7 +88,7 @@ namespace gsb.Entities
             get { return this.state; }
             set
             {
-                this.status = ExpenseState.Modified;
+                this.setModifiedStatus();
                 this.state = value;
             }
         }
