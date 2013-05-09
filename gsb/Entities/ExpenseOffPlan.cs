@@ -13,14 +13,16 @@ namespace gsb.Entities
 
         #region Data fields
         private int id;
-        private string label;
-        private DateTime date;
-        private decimal cost;
+        private string label = "Nouvel élément";
+        private DateTime date = DateTime.Today;
+        private decimal cost = 0;
         #endregion
 
         /*
          * Constructors
          */
+
+        public ExpenseOffPlan() { }
 
         public ExpenseOffPlan(Dictionary<string, object> row)
         {
