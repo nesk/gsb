@@ -13,6 +13,7 @@ namespace gsb.Entities
 
         #region Data fields
         private int id;
+        private string month;
         private string label = "Nouvel élément";
         private DateTime date = DateTime.Today;
         private decimal cost = 0;
@@ -22,7 +23,10 @@ namespace gsb.Entities
          * Constructors
          */
 
-        public ExpenseOffPlan() { }
+        public ExpenseOffPlan(string month)
+        {
+            this.month = month;
+        }
 
         public ExpenseOffPlan(Dictionary<string, object> row)
         {
@@ -84,6 +88,7 @@ namespace gsb.Entities
             this.status = ExpenseState.Loaded;
 
             this.id = (int)row["id"];
+            this.month = (string)row["month"];
             this.label = (string)row["label"];
             this.date = (DateTime)row["date"];
             this.cost = (decimal)row["cost"];
@@ -95,8 +100,6 @@ namespace gsb.Entities
             DbConnection connection = db.DbConnection;
             DbCommand cmd = connection.CreateCommand();
 
-            String month = this.date.Year.ToString().PadLeft(4, '0') + this.date.Month.ToString().PadLeft(2, '0');
-
             if (this.status == ExpenseState.New)
             {
                 const string query =
@@ -106,7 +109,7 @@ namespace gsb.Entities
 
                 cmd.CommandText = query;
                 cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, Database.Instance.UserId));
-                cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, month));
+                cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, this.month));
                 cmd.Parameters.Add(Database.CreateParameter("@label", DbType.String, this.label));
                 cmd.Parameters.Add(Database.CreateParameter("@date", DbType.Date, this.date));
                 cmd.Parameters.Add(Database.CreateParameter("@cost", DbType.Decimal, this.cost));

@@ -13,7 +13,7 @@ namespace gsb.Entities
             DbConnection connection = db.DbConnection;
 
             const string query =
-                "SELECT dateModif AS date, nbJustificatifs AS vouchers, montantValide AS amount, libelle AS state " +
+                "SELECT mois AS month, dateModif AS date, nbJustificatifs AS vouchers, montantValide AS amount, libelle AS state " +
                 "FROM FicheFrais AS f " +
                 "JOIN Etat AS e ON e.id = f.idEtat " +
                 "WHERE f.idVisiteur = @userId";

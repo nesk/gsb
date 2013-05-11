@@ -13,6 +13,7 @@ namespace gsb.Entities
          */
 
         #region Data fields
+        private string month = DateTime.Today.Year.ToString().PadLeft(4, '0') + DateTime.Today.Month.ToString().PadLeft(2, '0');
         private DateTime date = DateTime.Today;
         private int vouchersNb = 0;
         private decimal approvedAmount = 0;
@@ -112,7 +113,7 @@ namespace gsb.Entities
         {
             this.setModifiedStatus();
 
-            ExpenseOffPlan expense = new ExpenseOffPlan();
+            ExpenseOffPlan expense = new ExpenseOffPlan(this.month);
             this.expensesOffPlan.Add(expense);
             return expense;
         }
@@ -121,6 +122,7 @@ namespace gsb.Entities
         {
             this.status = ExpenseState.Loaded;
 
+            this.month = (string)row["month"];
             this.date = (DateTime)row["date"];
             this.vouchersNb = (int)row["vouchers"];
             this.approvedAmount = (decimal)row["amount"];
@@ -133,10 +135,8 @@ namespace gsb.Entities
             DbConnection connection = db.DbConnection;
             DbCommand cmd = connection.CreateCommand();
 
-            String month = this.date.Year.ToString().PadLeft(4, '0') + this.date.Month.ToString().PadLeft(2, '0');
-
             cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, db.UserId));
-            cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, month));
+            cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, this.month));
             cmd.Parameters.Add(Database.CreateParameter("@etp", DbType.Int32, this.expensesInPlan["ETP"]));
             cmd.Parameters.Add(Database.CreateParameter("@km", DbType.Int32, this.expensesInPlan["KM"]));
             cmd.Parameters.Add(Database.CreateParameter("@nui", DbType.Int32, this.expensesInPlan["NUI"]));
@@ -225,7 +225,7 @@ namespace gsb.Entities
             DbCommand cmd = connection.CreateCommand();
             cmd.CommandText = query;
             cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, db.UserId));
-            cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, this.date.Year.ToString().PadLeft(4, '0') + this.date.Month.ToString().PadLeft(2, '0')));
+            cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, this.month));
 
             string[] validIDs = { "ETP", "KM", "NUI", "REP" };
             
@@ -245,7 +245,7 @@ namespace gsb.Entities
             DbConnection connection = db.DbConnection;
 
             const string query =
-                "SELECT id, libelle AS label, date, montant AS cost " +
+                "SELECT id, mois AS month, libelle AS label, date, montant AS cost " +
                 "FROM LigneFraisHorsForfait " +
                 "WHERE idVisiteur = @userId " +
                 "AND mois = @month";
