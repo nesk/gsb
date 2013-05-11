@@ -110,7 +110,7 @@ namespace gsb.Entities
 
         public ExpenseOffPlan AddExpenseOffPlan()
         {
-            this.status = ExpenseState.Modified;
+            this.setModifiedStatus();
 
             ExpenseOffPlan expense = new ExpenseOffPlan();
             this.expensesOffPlan.Add(expense);

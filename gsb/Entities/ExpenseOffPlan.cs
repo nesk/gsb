@@ -100,8 +100,9 @@ namespace gsb.Entities
             if (this.status == ExpenseState.New)
             {
                 const string query =
-                    "INSERT INTO LigneFraisHorsForfait VALUES " +
-                    "('', @userId, @month, @label, @date, @cost)";
+                    "INSERT INTO LigneFraisHorsForfait(idVisiteur, mois, libelle, date, montant) VALUES " +
+                    "(@userId, @month, @label, @date, @cost);" +
+                    "SELECT SCOPE_IDENTITY()";
 
                 cmd.CommandText = query;
                 cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, Database.Instance.UserId));
@@ -110,16 +111,9 @@ namespace gsb.Entities
                 cmd.Parameters.Add(Database.CreateParameter("@date", DbType.Date, this.date));
                 cmd.Parameters.Add(Database.CreateParameter("@cost", DbType.Decimal, this.cost));
 
-                cmd.ExecuteNonQuery(); // We need to immediatly execute the query to obtain the ID below
+                this.id = (int)(decimal)cmd.ExecuteScalar(); // Storing the id of the last insertion
 
-                const string idQuery = "SELECT SCOPE_IDENTITY()";
-
-                DbCommand idCmd = connection.CreateCommand();
-                idCmd.CommandText = idQuery;
-                
-                this.id = (int)idCmd.ExecuteScalar(); // Storing the id of the last insertion
-
-                return; // We must exit the method to avoid a new call to the ExecuteNonQuery() method
+                return; // We must exit the method to avoid a call to the ExecuteNonQuery() method
             }
             else if (this.status == ExpenseState.Modified)
             {
