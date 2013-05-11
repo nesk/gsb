@@ -253,7 +253,7 @@ namespace gsb.Entities
             DbCommand cmd = connection.CreateCommand();
             cmd.CommandText = query;
             cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, db.UserId));
-            cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, this.date.Year.ToString().PadLeft(4, '0') + this.date.Month.ToString().PadLeft(2, '0')));
+            cmd.Parameters.Add(Database.CreateParameter("@month", DbType.String, this.month));
 
             DbDataReader reader = cmd.ExecuteReader();
             List<Dictionary<string, object>> rows = Database.GetDataReaderRows(reader);

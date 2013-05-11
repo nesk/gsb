@@ -31,7 +31,7 @@ namespace gsb
 
         private Database()
         {
-            String name = ConfigurationManager.AppSettings["connectionName"];
+            string name = ConfigurationManager.AppSettings["connectionName"];
             ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[name];
             Database.factory = DbProviderFactories.GetFactory(settings.ProviderName);
 
