@@ -212,6 +212,7 @@
             this.createExpenseButton.TabIndex = 3;
             this.createExpenseButton.Text = "Créer une fiche de frais pour le mois courant";
             this.createExpenseButton.UseVisualStyleBackColor = true;
+            this.createExpenseButton.Click += new System.EventHandler(this.createExpenseButton_Click);
             // 
             // groupBox2
             // 
@@ -252,6 +253,7 @@
             this.addExpenseOPButton.TabIndex = 6;
             this.addExpenseOPButton.Text = "+";
             this.addExpenseOPButton.UseVisualStyleBackColor = true;
+            this.addExpenseOPButton.Click += new System.EventHandler(this.addExpenseOPButton_Click);
             // 
             // expenseOPCostText
             // 
@@ -312,6 +314,7 @@
             this.saveExpenseButton.TabIndex = 5;
             this.saveExpenseButton.Text = "Sauvegarder ma fiche de frais";
             this.saveExpenseButton.UseVisualStyleBackColor = true;
+            this.saveExpenseButton.Click += new System.EventHandler(this.saveExpenseButton_Click);
             // 
             // cancelExpenseButton
             // 

@@ -45,6 +45,26 @@ namespace gsb
             }
         }
 
+        private void createExpenseButton_Click(object sender, EventArgs e)
+        {
+            this.expensesSelect.Items.Insert(0, new ExpenseNote());
+            this.expensesSelect.SelectedIndex = 0;
+        }
+
+        private void addExpenseOPButton_Click(object sender, EventArgs e)
+        {
+            ExpenseNote expense = (ExpenseNote)this.expensesSelect.SelectedItem;
+
+            this.expensesOPList.Items.Add(expense.AddExpenseOffPlan());
+            this.expensesOPList.SelectedIndex = this.expensesOPList.Items.Count - 1;
+            this.expenseOPLabelText.Focus();
+        }
+
+        private void saveExpenseButton_Click(object sender, EventArgs e)
+        {
+            ((ExpenseNote)this.expensesSelect.SelectedItem).Save();
+        }
+
         /*
          * Methods
          */
