@@ -81,27 +81,39 @@ namespace gsb
 
         private void RefreshControlsAvailability()
         {
+            /*
+             * Initialization
+             */
+
             bool isThereExpenses = (this.expensesSelect.Items.Count > 0);
-            ExpenseNote expense = isThereExpenses ? ((ExpenseNote)this.expensesSelect.SelectedItem) : null;
-            bool isExpenseOnTheCurrentMonth = (expense != null) ? (expense.Date.Month == DateTime.Today.Month) : false;
+
+            ExpenseNote currentExpense = isThereExpenses ? ((ExpenseNote)this.expensesSelect.SelectedItem) : null;
+            ExpenseNote firstExpense = isThereExpenses ? ((ExpenseNote)this.expensesSelect.Items[0]) : null;
+
+            bool isFirstExpenseOnTheCurrentMonth = (firstExpense != null) ? (firstExpense.Date.Month == DateTime.Today.Month) : false;
+            bool isCurrentExpenseOnTheCurrentMonth = (currentExpense != null) ? (currentExpense.Date.Month == DateTime.Today.Month) : false;
             bool isThereOffPlanExpenses = (this.expensesOPList.Items.Count > 0);
-            bool isExpenseSaved = (expense != null) ? (expense.Status == ExpenseState.Loaded) : true;
+            bool isExpenseSaved = (currentExpense != null) ? (currentExpense.Status == ExpenseState.Loaded) : true;
+
+            /*
+             * Assignments
+             */
 
             this.expensesSelect.Enabled = isThereExpenses;
-            this.createExpenseButton.Enabled = !isExpenseOnTheCurrentMonth;
+            this.createExpenseButton.Enabled = !isFirstExpenseOnTheCurrentMonth;
 
-            this.etpText.ReadOnly = !isExpenseOnTheCurrentMonth;
-            this.kmText.ReadOnly = !isExpenseOnTheCurrentMonth;
-            this.nuiText.ReadOnly = !isExpenseOnTheCurrentMonth;
-            this.repText.ReadOnly = !isExpenseOnTheCurrentMonth;
+            this.etpText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.kmText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.nuiText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.repText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
 
             this.expensesOPList.Enabled = isThereExpenses;
-            this.addExpenseOPButton.Enabled = isExpenseOnTheCurrentMonth;
-            this.removeExpenseOPButton.Enabled = isExpenseOnTheCurrentMonth && isThereOffPlanExpenses;
+            this.addExpenseOPButton.Enabled = isCurrentExpenseOnTheCurrentMonth;
+            this.removeExpenseOPButton.Enabled = isCurrentExpenseOnTheCurrentMonth && isThereOffPlanExpenses;
 
-            this.expenseOPDate.Enabled = isExpenseOnTheCurrentMonth;
-            this.expenseOPLabelText.ReadOnly = !isExpenseOnTheCurrentMonth;
-            this.expenseOPCostText.ReadOnly = !isExpenseOnTheCurrentMonth;
+            this.expenseOPDate.Enabled = isCurrentExpenseOnTheCurrentMonth;
+            this.expenseOPLabelText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.expenseOPCostText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
 
             this.saveExpenseButton.Enabled = !isExpenseSaved;
             this.cancelExpenseButton.Enabled = !isExpenseSaved;
