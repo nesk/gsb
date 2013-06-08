@@ -121,6 +121,10 @@ namespace gsb
 
         private void LoadExpenseNote(ExpenseNote expense)
         {
+            this.stateLabel.Text = String.Format("Etat : {0}", expense.State);
+            this.approvedAmountLabel.Text = String.Format("Montant approuvé : {0:C}", expense.ApprovedAmount);
+            this.vouchersLabel.Text = String.Format("Nombre de justificatifs reçus : {0}", expense.VouchersNb);
+
             this.etpText.Text = expense.ExpensesInPlan["ETP"].ToString();
             this.kmText.Text = expense.ExpensesInPlan["KM"].ToString();
             this.nuiText.Text = expense.ExpensesInPlan["NUI"].ToString();

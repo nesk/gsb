@@ -17,7 +17,7 @@ namespace gsb.Entities
         private DateTime date = DateTime.Today;
         private int vouchersNb = 0;
         private decimal approvedAmount = 0;
-        private string state = "CR";
+        private string state = "Fiche créée, saisie en cours";
 
         private Dictionary<string, int> expensesInPlan = new Dictionary<string,int>();
         

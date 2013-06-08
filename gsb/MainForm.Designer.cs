@@ -52,9 +52,14 @@
             this.expensesOPList = new System.Windows.Forms.ListBox();
             this.saveExpenseButton = new System.Windows.Forms.Button();
             this.cancelExpenseButton = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.stateLabel = new System.Windows.Forms.Label();
+            this.approvedAmountLabel = new System.Windows.Forms.Label();
+            this.vouchersLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // expensesSelect
@@ -80,7 +85,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(13, 59);
+            this.groupBox1.Location = new System.Drawing.Point(12, 138);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(425, 75);
@@ -226,7 +231,7 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.expenseOPDate);
             this.groupBox2.Controls.Add(this.expensesOPList);
-            this.groupBox2.Location = new System.Drawing.Point(13, 147);
+            this.groupBox2.Location = new System.Drawing.Point(12, 226);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(425, 131);
@@ -307,7 +312,7 @@
             // 
             // saveExpenseButton
             // 
-            this.saveExpenseButton.Location = new System.Drawing.Point(39, 284);
+            this.saveExpenseButton.Location = new System.Drawing.Point(38, 363);
             this.saveExpenseButton.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.saveExpenseButton.Name = "saveExpenseButton";
             this.saveExpenseButton.Size = new System.Drawing.Size(177, 23);
@@ -318,7 +323,7 @@
             // 
             // cancelExpenseButton
             // 
-            this.cancelExpenseButton.Location = new System.Drawing.Point(234, 284);
+            this.cancelExpenseButton.Location = new System.Drawing.Point(233, 363);
             this.cancelExpenseButton.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
             this.cancelExpenseButton.Name = "cancelExpenseButton";
             this.cancelExpenseButton.Size = new System.Drawing.Size(177, 23);
@@ -326,12 +331,55 @@
             this.cancelExpenseButton.Text = "Annuler mes modifications";
             this.cancelExpenseButton.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.vouchersLabel);
+            this.groupBox3.Controls.Add(this.approvedAmountLabel);
+            this.groupBox3.Controls.Add(this.stateLabel);
+            this.groupBox3.Location = new System.Drawing.Point(12, 53);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(425, 72);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Informations";
+            // 
+            // stateLabel
+            // 
+            this.stateLabel.AutoSize = true;
+            this.stateLabel.Location = new System.Drawing.Point(6, 19);
+            this.stateLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.stateLabel.Name = "stateLabel";
+            this.stateLabel.Size = new System.Drawing.Size(66, 13);
+            this.stateLabel.TabIndex = 0;
+            this.stateLabel.Text = "Etat : Aucun";
+            // 
+            // approvedAmountLabel
+            // 
+            this.approvedAmountLabel.AutoSize = true;
+            this.approvedAmountLabel.Location = new System.Drawing.Point(6, 35);
+            this.approvedAmountLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.approvedAmountLabel.Name = "approvedAmountLabel";
+            this.approvedAmountLabel.Size = new System.Drawing.Size(124, 13);
+            this.approvedAmountLabel.TabIndex = 1;
+            this.approvedAmountLabel.Text = "Montant approuvé : 0,00";
+            // 
+            // vouchersLabel
+            // 
+            this.vouchersLabel.AutoSize = true;
+            this.vouchersLabel.Location = new System.Drawing.Point(6, 51);
+            this.vouchersLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.vouchersLabel.Name = "vouchersLabel";
+            this.vouchersLabel.Size = new System.Drawing.Size(154, 13);
+            this.vouchersLabel.TabIndex = 2;
+            this.vouchersLabel.Text = "Nombre de justificatifs reçus : 0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(450, 312);
+            this.ClientSize = new System.Drawing.Size(450, 397);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.cancelExpenseButton);
             this.Controls.Add(this.saveExpenseButton);
             this.Controls.Add(this.groupBox2);
@@ -350,6 +398,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,6 +431,10 @@
         private System.Windows.Forms.Button addExpenseOPButton;
         private System.Windows.Forms.Button saveExpenseButton;
         private System.Windows.Forms.Button cancelExpenseButton;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label vouchersLabel;
+        private System.Windows.Forms.Label approvedAmountLabel;
+        private System.Windows.Forms.Label stateLabel;
 
     }
 }
