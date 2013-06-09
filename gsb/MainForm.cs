@@ -96,7 +96,8 @@ namespace gsb
             bool isExpenseSaved = (currentExpense != null) ? (currentExpense.Status == ExpenseState.Loaded) : true;
 
             // The increment value is used to nullify the action of the buttons next to a NumericUpDown control when it's readonly
-            int incrementValueforNumericBoxes = isCurrentExpenseOnTheCurrentMonth ? 1 : 0;
+            int incrementValueForExpenseInPlan = isCurrentExpenseOnTheCurrentMonth ? 1 : 0;
+            int incrementValueForCost = isCurrentExpenseOnTheCurrentMonth && isThereOffPlanExpenses ? 1 : 0;
 
             /*
              * Assignments
@@ -106,26 +107,26 @@ namespace gsb
             this.createExpenseButton.Enabled = !isFirstExpenseOnTheCurrentMonth;
 
             this.etpNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
-            this.etpNum.Increment = incrementValueforNumericBoxes;
+            this.etpNum.Increment = incrementValueForExpenseInPlan;
 
             this.kmNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
-            this.kmNum.Increment = incrementValueforNumericBoxes;
+            this.kmNum.Increment = incrementValueForExpenseInPlan;
 
             this.nuiNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
-            this.nuiNum.Increment = incrementValueforNumericBoxes;
+            this.nuiNum.Increment = incrementValueForExpenseInPlan;
 
             this.repNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
-            this.repNum.Increment = incrementValueforNumericBoxes;
+            this.repNum.Increment = incrementValueForExpenseInPlan;
 
             this.expensesOPList.Enabled = isThereExpenses;
             this.addExpenseOPButton.Enabled = isCurrentExpenseOnTheCurrentMonth;
             this.removeExpenseOPButton.Enabled = isCurrentExpenseOnTheCurrentMonth && isThereOffPlanExpenses;
 
-            this.expenseOPDate.Enabled = isCurrentExpenseOnTheCurrentMonth;
-            this.expenseOPLabelText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.expenseOPDate.Enabled = isCurrentExpenseOnTheCurrentMonth && isThereOffPlanExpenses;
+            this.expenseOPLabelText.ReadOnly = !(isCurrentExpenseOnTheCurrentMonth && isThereOffPlanExpenses);
 
-            this.expenseOPCostNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
-            this.expenseOPCostNum.Increment = incrementValueforNumericBoxes;
+            this.expenseOPCostNum.ReadOnly = !(isCurrentExpenseOnTheCurrentMonth && isThereOffPlanExpenses);
+            this.expenseOPCostNum.Increment = incrementValueForCost;
 
             this.saveExpenseButton.Enabled = !isExpenseSaved;
             this.cancelExpenseButton.Enabled = !isExpenseSaved;
