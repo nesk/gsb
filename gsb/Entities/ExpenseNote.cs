@@ -170,7 +170,7 @@ namespace gsb.Entities
                 cmd.Parameters.Add(Database.CreateParameter("@vouchersNb", DbType.Int32, this.vouchersNb));
                 cmd.Parameters.Add(Database.CreateParameter("@amount", DbType.Int32, this.approvedAmount));
                 cmd.Parameters.Add(Database.CreateParameter("@date", DbType.Date, this.date));
-                cmd.Parameters.Add(Database.CreateParameter("@state", DbType.String, this.state));
+                cmd.Parameters.Add(Database.CreateParameter("@state", DbType.String, "CR"));
             }
             else if (this.status == ExpenseState.Modified)
             {
