@@ -9,6 +9,12 @@ namespace gsb
     public partial class MainForm : Form
     {
         /*
+         * Fields
+         */
+
+        bool ignoreEvents = false; // Used to avoid the Control_Changed method to do her work when a value is set programmatically
+
+        /*
          * Constructors
          */
 
@@ -75,6 +81,38 @@ namespace gsb
             this.RefreshControlsAvailability();
         }
 
+        private void Control_Changed(object sender, EventArgs e)
+        {
+            if (ignoreEvents) return; // See ignoreEvents declaration
+
+            ExpenseNote expenseNote = (ExpenseNote)this.expensesSelect.SelectedItem;
+            ExpenseOffPlan expenseOffPlan = (ExpenseOffPlan)this.expensesOPList.SelectedItem;
+
+            if (sender is NumericUpDown)
+            {
+                NumericUpDown control = (NumericUpDown)sender;
+
+                if (control == this.etpNum)
+                    expenseNote.SetExpenseInPlan("ETP", (int)this.etpNum.Value);
+                else if (control == this.kmNum)
+                    expenseNote.SetExpenseInPlan("KM", (int)this.kmNum.Value);
+                else if (control == this.nuiNum)
+                    expenseNote.SetExpenseInPlan("NUI", (int)this.nuiNum.Value);
+                else if (control == this.repNum)
+                    expenseNote.SetExpenseInPlan("REP", (int)this.repNum.Value);
+                else // control == this.expenseOPCostNum
+                    expenseOffPlan.Cost = this.expenseOPCostNum.Value;
+            }
+            else if (sender is TextBox)
+            {
+
+                expenseOffPlan.Label = ((TextBox)sender).Text;
+                this.expensesOPList.Items[this.expensesOPList.SelectedIndex] = expenseOffPlan;
+            }
+            else // sender is DateTimePicker
+                expenseOffPlan.Date = ((DateTimePicker)sender).Value;
+        }
+
         /*
          * Methods
          */
@@ -134,6 +172,8 @@ namespace gsb
 
         private void LoadExpenseNote(ExpenseNote expense)
         {
+            this.ignoreEvents = true; // See ignoreEvents declaration
+
             this.stateLabel.Text = String.Format("Etat : {0}", expense.State);
             this.approvedAmountLabel.Text = String.Format("Montant approuvé : {0:C}", expense.ApprovedAmount);
             this.vouchersLabel.Text = String.Format("Nombre de justificatifs reçus : {0}", expense.VouchersNb);
@@ -151,13 +191,21 @@ namespace gsb
 
             if (this.expensesOPList.Items.Count > 0)
                 this.expensesOPList.SelectedIndex = 0;
+
+            this.ignoreEvents = false; // See ignoreEvents declaration
         }
 
         private void LoadExpenseOffPlan(ExpenseOffPlan expense)
         {
+            if (expense == null) return;
+
+            this.ignoreEvents = true; // See ignoreEvents declaration
+
             this.expenseOPDate.Value = expense.Date;
             this.expenseOPLabelText.Text = expense.Label;
             this.expenseOPCostNum.Value = expense.Cost;
+
+            this.ignoreEvents = false; // See ignoreEvents declaration
         }
 
         private void ClearExpensesInPlan()

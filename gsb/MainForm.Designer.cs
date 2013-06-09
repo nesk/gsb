@@ -36,8 +36,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.etpNum = new System.Windows.Forms.NumericUpDown();
+            this.kmNum = new System.Windows.Forms.NumericUpDown();
+            this.nuiNum = new System.Windows.Forms.NumericUpDown();
+            this.repNum = new System.Windows.Forms.NumericUpDown();
             this.createExpenseButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.expenseOPCostNum = new System.Windows.Forms.NumericUpDown();
             this.removeExpenseOPButton = new System.Windows.Forms.Button();
             this.addExpenseOPButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -51,20 +56,15 @@
             this.vouchersLabel = new System.Windows.Forms.Label();
             this.approvedAmountLabel = new System.Windows.Forms.Label();
             this.stateLabel = new System.Windows.Forms.Label();
-            this.etpNum = new System.Windows.Forms.NumericUpDown();
-            this.kmNum = new System.Windows.Forms.NumericUpDown();
-            this.nuiNum = new System.Windows.Forms.NumericUpDown();
-            this.repNum = new System.Windows.Forms.NumericUpDown();
-            this.expenseOPCostNum = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.etpNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kmNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuiNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repNum)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expenseOPCostNum)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // expensesSelect
@@ -177,6 +177,42 @@
             this.label2.Text = "Forfait Etape";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // etpNum
+            // 
+            this.etpNum.Location = new System.Drawing.Point(4, 25);
+            this.etpNum.Name = "etpNum";
+            this.etpNum.Size = new System.Drawing.Size(95, 20);
+            this.etpNum.TabIndex = 4;
+            this.etpNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.etpNum.ValueChanged += new System.EventHandler(this.Control_Changed);
+            // 
+            // kmNum
+            // 
+            this.kmNum.Location = new System.Drawing.Point(106, 25);
+            this.kmNum.Name = "kmNum";
+            this.kmNum.Size = new System.Drawing.Size(95, 20);
+            this.kmNum.TabIndex = 5;
+            this.kmNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.kmNum.ValueChanged += new System.EventHandler(this.Control_Changed);
+            // 
+            // nuiNum
+            // 
+            this.nuiNum.Location = new System.Drawing.Point(208, 25);
+            this.nuiNum.Name = "nuiNum";
+            this.nuiNum.Size = new System.Drawing.Size(95, 20);
+            this.nuiNum.TabIndex = 6;
+            this.nuiNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nuiNum.ValueChanged += new System.EventHandler(this.Control_Changed);
+            // 
+            // repNum
+            // 
+            this.repNum.Location = new System.Drawing.Point(310, 25);
+            this.repNum.Name = "repNum";
+            this.repNum.Size = new System.Drawing.Size(98, 20);
+            this.repNum.TabIndex = 7;
+            this.repNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.repNum.ValueChanged += new System.EventHandler(this.Control_Changed);
+            // 
             // createExpenseButton
             // 
             this.createExpenseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -207,6 +243,20 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Eléments hors forfait";
+            // 
+            // expenseOPCostNum
+            // 
+            this.expenseOPCostNum.DecimalPlaces = 2;
+            this.expenseOPCostNum.Location = new System.Drawing.Point(320, 71);
+            this.expenseOPCostNum.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.expenseOPCostNum.Name = "expenseOPCostNum";
+            this.expenseOPCostNum.Size = new System.Drawing.Size(65, 20);
+            this.expenseOPCostNum.TabIndex = 4;
+            this.expenseOPCostNum.ValueChanged += new System.EventHandler(this.Control_Changed);
             // 
             // removeExpenseOPButton
             // 
@@ -245,6 +295,7 @@
             this.expenseOPLabelText.Name = "expenseOPLabelText";
             this.expenseOPLabelText.Size = new System.Drawing.Size(125, 20);
             this.expenseOPLabelText.TabIndex = 3;
+            this.expenseOPLabelText.TextChanged += new System.EventHandler(this.Control_Changed);
             // 
             // label6
             // 
@@ -262,6 +313,7 @@
             this.expenseOPDate.Name = "expenseOPDate";
             this.expenseOPDate.Size = new System.Drawing.Size(200, 20);
             this.expenseOPDate.TabIndex = 1;
+            this.expenseOPDate.ValueChanged += new System.EventHandler(this.Control_Changed);
             // 
             // expensesOPList
             // 
@@ -335,51 +387,6 @@
             this.stateLabel.TabIndex = 0;
             this.stateLabel.Text = "Etat : Aucun";
             // 
-            // etpNum
-            // 
-            this.etpNum.Location = new System.Drawing.Point(4, 25);
-            this.etpNum.Name = "etpNum";
-            this.etpNum.Size = new System.Drawing.Size(95, 20);
-            this.etpNum.TabIndex = 4;
-            this.etpNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // kmNum
-            // 
-            this.kmNum.Location = new System.Drawing.Point(106, 25);
-            this.kmNum.Name = "kmNum";
-            this.kmNum.Size = new System.Drawing.Size(95, 20);
-            this.kmNum.TabIndex = 5;
-            this.kmNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // nuiNum
-            // 
-            this.nuiNum.Location = new System.Drawing.Point(208, 25);
-            this.nuiNum.Name = "nuiNum";
-            this.nuiNum.Size = new System.Drawing.Size(95, 20);
-            this.nuiNum.TabIndex = 6;
-            this.nuiNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // repNum
-            // 
-            this.repNum.Location = new System.Drawing.Point(310, 25);
-            this.repNum.Name = "repNum";
-            this.repNum.Size = new System.Drawing.Size(98, 20);
-            this.repNum.TabIndex = 7;
-            this.repNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // expenseOPCostNum
-            // 
-            this.expenseOPCostNum.DecimalPlaces = 2;
-            this.expenseOPCostNum.Location = new System.Drawing.Point(320, 71);
-            this.expenseOPCostNum.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-            this.expenseOPCostNum.Name = "expenseOPCostNum";
-            this.expenseOPCostNum.Size = new System.Drawing.Size(65, 20);
-            this.expenseOPCostNum.TabIndex = 4;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,15 +410,15 @@
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.etpNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kmNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuiNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repNum)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expenseOPCostNum)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
