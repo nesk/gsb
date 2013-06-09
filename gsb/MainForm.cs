@@ -95,6 +95,9 @@ namespace gsb
             bool isThereOffPlanExpenses = (this.expensesOPList.Items.Count > 0);
             bool isExpenseSaved = (currentExpense != null) ? (currentExpense.Status == ExpenseState.Loaded) : true;
 
+            // The increment value is used to nullify the action of the buttons next to a NumericUpDown control when it's readonly
+            int incrementValueforNumericBoxes = isCurrentExpenseOnTheCurrentMonth ? 1 : 0;
+
             /*
              * Assignments
              */
@@ -102,10 +105,17 @@ namespace gsb
             this.expensesSelect.Enabled = isThereExpenses;
             this.createExpenseButton.Enabled = !isFirstExpenseOnTheCurrentMonth;
 
-            this.etpText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
-            this.kmText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
-            this.nuiText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
-            this.repText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.etpNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.etpNum.Increment = incrementValueforNumericBoxes;
+
+            this.kmNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.kmNum.Increment = incrementValueforNumericBoxes;
+
+            this.nuiNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.nuiNum.Increment = incrementValueforNumericBoxes;
+
+            this.repNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.repNum.Increment = incrementValueforNumericBoxes;
 
             this.expensesOPList.Enabled = isThereExpenses;
             this.addExpenseOPButton.Enabled = isCurrentExpenseOnTheCurrentMonth;
@@ -113,7 +123,9 @@ namespace gsb
 
             this.expenseOPDate.Enabled = isCurrentExpenseOnTheCurrentMonth;
             this.expenseOPLabelText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
-            this.expenseOPCostText.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+
+            this.expenseOPCostNum.ReadOnly = !isCurrentExpenseOnTheCurrentMonth;
+            this.expenseOPCostNum.Increment = incrementValueforNumericBoxes;
 
             this.saveExpenseButton.Enabled = !isExpenseSaved;
             this.cancelExpenseButton.Enabled = !isExpenseSaved;
@@ -125,10 +137,10 @@ namespace gsb
             this.approvedAmountLabel.Text = String.Format("Montant approuvé : {0:C}", expense.ApprovedAmount);
             this.vouchersLabel.Text = String.Format("Nombre de justificatifs reçus : {0}", expense.VouchersNb);
 
-            this.etpText.Text = expense.ExpensesInPlan["ETP"].ToString();
-            this.kmText.Text = expense.ExpensesInPlan["KM"].ToString();
-            this.nuiText.Text = expense.ExpensesInPlan["NUI"].ToString();
-            this.repText.Text = expense.ExpensesInPlan["REP"].ToString();
+            this.etpNum.Text = expense.ExpensesInPlan["ETP"].ToString();
+            this.kmNum.Text = expense.ExpensesInPlan["KM"].ToString();
+            this.nuiNum.Text = expense.ExpensesInPlan["NUI"].ToString();
+            this.repNum.Text = expense.ExpensesInPlan["REP"].ToString();
 
             ExpenseOffPlan[] expensesOffPlan = new ExpenseOffPlan[expense.ExpensesOffPlan.Count];
             expense.ExpensesOffPlan.CopyTo(expensesOffPlan, 0);
@@ -144,15 +156,15 @@ namespace gsb
         {
             this.expenseOPDate.Value = expense.Date;
             this.expenseOPLabelText.Text = expense.Label;
-            this.expenseOPCostText.Text = expense.Cost.ToString();
+            this.expenseOPCostNum.Text = expense.Cost.ToString();
         }
 
         private void ClearExpensesInPlan()
         {
-            this.etpText.Text = "";
-            this.kmText.Text = "";
-            this.nuiText.Text = "";
-            this.repText.Text = "";
+            this.etpNum.Text = "";
+            this.kmNum.Text = "";
+            this.nuiNum.Text = "";
+            this.repNum.Text = "";
         }
 
         private void ClearExpensesOffPlan()
@@ -160,7 +172,7 @@ namespace gsb
             this.expensesOPList.Items.Clear();
             this.expenseOPDate.Value = DateTime.Today;
             this.expenseOPLabelText.Text = "";
-            this.expenseOPCostText.Text = "";
+            this.expenseOPCostNum.Text = "";
         }
     }
 }

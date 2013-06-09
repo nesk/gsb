@@ -32,19 +32,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.repText = new System.Windows.Forms.TextBox();
-            this.nuiText = new System.Windows.Forms.TextBox();
-            this.kmText = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.etpText = new System.Windows.Forms.TextBox();
             this.createExpenseButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.removeExpenseOPButton = new System.Windows.Forms.Button();
             this.addExpenseOPButton = new System.Windows.Forms.Button();
-            this.expenseOPCostText = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.expenseOPLabelText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,13 +48,23 @@
             this.saveExpenseButton = new System.Windows.Forms.Button();
             this.cancelExpenseButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.stateLabel = new System.Windows.Forms.Label();
-            this.approvedAmountLabel = new System.Windows.Forms.Label();
             this.vouchersLabel = new System.Windows.Forms.Label();
+            this.approvedAmountLabel = new System.Windows.Forms.Label();
+            this.stateLabel = new System.Windows.Forms.Label();
+            this.etpNum = new System.Windows.Forms.NumericUpDown();
+            this.kmNum = new System.Windows.Forms.NumericUpDown();
+            this.nuiNum = new System.Windows.Forms.NumericUpDown();
+            this.repNum = new System.Windows.Forms.NumericUpDown();
+            this.expenseOPCostNum = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etpNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kmNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuiNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expenseOPCostNum)).BeginInit();
             this.SuspendLayout();
             // 
             // expensesSelect
@@ -104,14 +109,14 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.repText, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.nuiText, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.kmText, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label5, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.etpText, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.etpNum, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.kmNum, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.nuiNum, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.repNum, 3, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 20);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -119,33 +124,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(412, 49);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // repText
-            // 
-            this.repText.Location = new System.Drawing.Point(327, 25);
-            this.repText.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.repText.Name = "repText";
-            this.repText.Size = new System.Drawing.Size(61, 20);
-            this.repText.TabIndex = 7;
-            this.repText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // nuiText
-            // 
-            this.nuiText.Location = new System.Drawing.Point(225, 25);
-            this.nuiText.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.nuiText.Name = "nuiText";
-            this.nuiText.Size = new System.Drawing.Size(61, 20);
-            this.nuiText.TabIndex = 6;
-            this.nuiText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // kmText
-            // 
-            this.kmText.Location = new System.Drawing.Point(123, 25);
-            this.kmText.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.kmText.Name = "kmText";
-            this.kmText.Size = new System.Drawing.Size(61, 20);
-            this.kmText.TabIndex = 5;
-            this.kmText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
@@ -199,15 +177,6 @@
             this.label2.Text = "Forfait Etape";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // etpText
-            // 
-            this.etpText.Location = new System.Drawing.Point(21, 25);
-            this.etpText.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.etpText.Name = "etpText";
-            this.etpText.Size = new System.Drawing.Size(61, 20);
-            this.etpText.TabIndex = 4;
-            this.etpText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // createExpenseButton
             // 
             this.createExpenseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -223,9 +192,9 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.expenseOPCostNum);
             this.groupBox2.Controls.Add(this.removeExpenseOPButton);
             this.groupBox2.Controls.Add(this.addExpenseOPButton);
-            this.groupBox2.Controls.Add(this.expenseOPCostText);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.expenseOPLabelText);
             this.groupBox2.Controls.Add(this.label6);
@@ -259,13 +228,6 @@
             this.addExpenseOPButton.Text = "+";
             this.addExpenseOPButton.UseVisualStyleBackColor = true;
             this.addExpenseOPButton.Click += new System.EventHandler(this.addExpenseOPButton_Click);
-            // 
-            // expenseOPCostText
-            // 
-            this.expenseOPCostText.Location = new System.Drawing.Point(320, 70);
-            this.expenseOPCostText.Name = "expenseOPCostText";
-            this.expenseOPCostText.Size = new System.Drawing.Size(65, 20);
-            this.expenseOPCostText.TabIndex = 5;
             // 
             // label7
             // 
@@ -343,15 +305,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Informations";
             // 
-            // stateLabel
+            // vouchersLabel
             // 
-            this.stateLabel.AutoSize = true;
-            this.stateLabel.Location = new System.Drawing.Point(6, 19);
-            this.stateLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.stateLabel.Name = "stateLabel";
-            this.stateLabel.Size = new System.Drawing.Size(66, 13);
-            this.stateLabel.TabIndex = 0;
-            this.stateLabel.Text = "Etat : Aucun";
+            this.vouchersLabel.AutoSize = true;
+            this.vouchersLabel.Location = new System.Drawing.Point(6, 51);
+            this.vouchersLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.vouchersLabel.Name = "vouchersLabel";
+            this.vouchersLabel.Size = new System.Drawing.Size(154, 13);
+            this.vouchersLabel.TabIndex = 2;
+            this.vouchersLabel.Text = "Nombre de justificatifs reçus : 0";
             // 
             // approvedAmountLabel
             // 
@@ -363,15 +325,60 @@
             this.approvedAmountLabel.TabIndex = 1;
             this.approvedAmountLabel.Text = "Montant approuvé : 0,00";
             // 
-            // vouchersLabel
+            // stateLabel
             // 
-            this.vouchersLabel.AutoSize = true;
-            this.vouchersLabel.Location = new System.Drawing.Point(6, 51);
-            this.vouchersLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.vouchersLabel.Name = "vouchersLabel";
-            this.vouchersLabel.Size = new System.Drawing.Size(154, 13);
-            this.vouchersLabel.TabIndex = 2;
-            this.vouchersLabel.Text = "Nombre de justificatifs reçus : 0";
+            this.stateLabel.AutoSize = true;
+            this.stateLabel.Location = new System.Drawing.Point(6, 19);
+            this.stateLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.stateLabel.Name = "stateLabel";
+            this.stateLabel.Size = new System.Drawing.Size(66, 13);
+            this.stateLabel.TabIndex = 0;
+            this.stateLabel.Text = "Etat : Aucun";
+            // 
+            // etpNum
+            // 
+            this.etpNum.Location = new System.Drawing.Point(4, 25);
+            this.etpNum.Name = "etpNum";
+            this.etpNum.Size = new System.Drawing.Size(95, 20);
+            this.etpNum.TabIndex = 4;
+            this.etpNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // kmNum
+            // 
+            this.kmNum.Location = new System.Drawing.Point(106, 25);
+            this.kmNum.Name = "kmNum";
+            this.kmNum.Size = new System.Drawing.Size(95, 20);
+            this.kmNum.TabIndex = 5;
+            this.kmNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // nuiNum
+            // 
+            this.nuiNum.Location = new System.Drawing.Point(208, 25);
+            this.nuiNum.Name = "nuiNum";
+            this.nuiNum.Size = new System.Drawing.Size(95, 20);
+            this.nuiNum.TabIndex = 6;
+            this.nuiNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // repNum
+            // 
+            this.repNum.Location = new System.Drawing.Point(310, 25);
+            this.repNum.Name = "repNum";
+            this.repNum.Size = new System.Drawing.Size(98, 20);
+            this.repNum.TabIndex = 7;
+            this.repNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // expenseOPCostNum
+            // 
+            this.expenseOPCostNum.DecimalPlaces = 2;
+            this.expenseOPCostNum.Location = new System.Drawing.Point(320, 71);
+            this.expenseOPCostNum.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.expenseOPCostNum.Name = "expenseOPCostNum";
+            this.expenseOPCostNum.Size = new System.Drawing.Size(65, 20);
+            this.expenseOPCostNum.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -400,6 +407,11 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etpNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kmNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuiNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expenseOPCostNum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,17 +423,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TextBox repText;
-        private System.Windows.Forms.TextBox nuiText;
-        private System.Windows.Forms.TextBox kmText;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox etpText;
         private System.Windows.Forms.Button createExpenseButton;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox expenseOPCostText;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox expenseOPLabelText;
         private System.Windows.Forms.Label label6;
@@ -435,6 +442,11 @@
         private System.Windows.Forms.Label vouchersLabel;
         private System.Windows.Forms.Label approvedAmountLabel;
         private System.Windows.Forms.Label stateLabel;
+        private System.Windows.Forms.NumericUpDown etpNum;
+        private System.Windows.Forms.NumericUpDown kmNum;
+        private System.Windows.Forms.NumericUpDown nuiNum;
+        private System.Windows.Forms.NumericUpDown repNum;
+        private System.Windows.Forms.NumericUpDown expenseOPCostNum;
 
     }
 }
