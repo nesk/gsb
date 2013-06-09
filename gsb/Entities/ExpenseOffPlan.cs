@@ -155,7 +155,7 @@ namespace gsb.Entities
 
         public override string ToString()
         {
-            return this.label;
+            return String.IsNullOrEmpty(this.label) ? "Nouvel élément" : this.label;
         }
     }
 }
