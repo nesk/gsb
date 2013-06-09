@@ -137,10 +137,10 @@ namespace gsb
             this.approvedAmountLabel.Text = String.Format("Montant approuvé : {0:C}", expense.ApprovedAmount);
             this.vouchersLabel.Text = String.Format("Nombre de justificatifs reçus : {0}", expense.VouchersNb);
 
-            this.etpNum.Text = expense.ExpensesInPlan["ETP"].ToString();
-            this.kmNum.Text = expense.ExpensesInPlan["KM"].ToString();
-            this.nuiNum.Text = expense.ExpensesInPlan["NUI"].ToString();
-            this.repNum.Text = expense.ExpensesInPlan["REP"].ToString();
+            this.etpNum.Value = expense.ExpensesInPlan["ETP"];
+            this.kmNum.Value = expense.ExpensesInPlan["KM"];
+            this.nuiNum.Value = expense.ExpensesInPlan["NUI"];
+            this.repNum.Value = expense.ExpensesInPlan["REP"];
 
             ExpenseOffPlan[] expensesOffPlan = new ExpenseOffPlan[expense.ExpensesOffPlan.Count];
             expense.ExpensesOffPlan.CopyTo(expensesOffPlan, 0);
@@ -156,15 +156,15 @@ namespace gsb
         {
             this.expenseOPDate.Value = expense.Date;
             this.expenseOPLabelText.Text = expense.Label;
-            this.expenseOPCostNum.Text = expense.Cost.ToString();
+            this.expenseOPCostNum.Value = expense.Cost;
         }
 
         private void ClearExpensesInPlan()
         {
-            this.etpNum.Text = "";
-            this.kmNum.Text = "";
-            this.nuiNum.Text = "";
-            this.repNum.Text = "";
+            this.etpNum.Value = 0;
+            this.kmNum.Value = 0;
+            this.nuiNum.Value = 0;
+            this.repNum.Value = 0;
         }
 
         private void ClearExpensesOffPlan()
@@ -172,7 +172,7 @@ namespace gsb
             this.expensesOPList.Items.Clear();
             this.expenseOPDate.Value = DateTime.Today;
             this.expenseOPLabelText.Text = "";
-            this.expenseOPCostNum.Text = "";
+            this.expenseOPCostNum.Value = 0;
         }
     }
 }
