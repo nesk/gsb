@@ -109,6 +109,11 @@ namespace gsb.Entities
          * Methods
          */
 
+        public void SetExpenseInPlan(string name, int value)
+        {
+            this.expensesInPlan[name] = value;
+        }
+
         public ExpenseOffPlan AddExpenseOffPlan()
         {
             this.setModifiedStatus();
@@ -116,6 +121,11 @@ namespace gsb.Entities
             ExpenseOffPlan expense = new ExpenseOffPlan(this.month);
             this.expensesOffPlan.Add(expense);
             return expense;
+        }
+
+        public bool RemoveExpenseOffPlan(ExpenseOffPlan expense)
+        {
+            return this.expensesOffPlan.Remove(expense);
         }
 
         public override void Fill(Dictionary<string, object> row)
