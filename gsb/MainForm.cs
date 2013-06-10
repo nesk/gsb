@@ -29,14 +29,7 @@ namespace gsb
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            List<ExpenseNote> expenseNotes = Expenses.GetExpenseNotes();
-            expenseNotes.Sort();
-            this.expensesSelect.Items.AddRange(expenseNotes.ToArray());
-
-            if(this.expensesSelect.Items.Count > 0)
-                this.expensesSelect.SelectedIndex = 0;
-
-            this.RefreshControlsAvailability();
+            this.LoadApplication();
         }
 
         private void ListControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,6 +89,21 @@ namespace gsb
             ((ExpenseNote)this.expensesSelect.SelectedItem).Save();
 
             this.RefreshControlsAvailability();
+        }
+
+        private void cancelExpenseButton_Click(object sender, EventArgs e)
+        {
+            this.ignoreEvents = true; // See ignoreEvents declaration
+            
+            int index = this.expensesOPList.SelectedIndex;
+
+            this.expensesSelect.Items.Clear();
+            this.ClearExpensesOffPlan();
+            this.LoadApplication();
+
+            this.expensesOPList.SelectedIndex = (this.expensesOPList.Items.Count == index) ? index - 1 : index;
+
+            this.ignoreEvents = false; // See ignoreEvents declaration
         }
 
         private void Control_Changed(object sender, EventArgs e)
@@ -189,6 +197,16 @@ namespace gsb
             this.cancelExpenseButton.Enabled = !isExpenseSaved;
         }
 
+        private void LoadApplication()
+        {
+            List<ExpenseNote> expenseNotes = Expenses.GetExpenseNotes();
+            expenseNotes.Sort();
+            this.expensesSelect.Items.AddRange(expenseNotes.ToArray());
+
+            if (this.expensesSelect.Items.Count > 0)
+                this.expensesSelect.SelectedIndex = 0;
+        }
+
         private void LoadExpenseNote(ExpenseNote expense)
         {
             this.ignoreEvents = true; // See ignoreEvents declaration
@@ -225,14 +243,6 @@ namespace gsb
             this.expenseOPCostNum.Value = expense.Cost;
 
             this.ignoreEvents = false; // See ignoreEvents declaration
-        }
-
-        private void ClearExpensesInPlan()
-        {
-            this.etpNum.Value = 0;
-            this.kmNum.Value = 0;
-            this.nuiNum.Value = 0;
-            this.repNum.Value = 0;
         }
 
         private void ClearExpensesOffPlan()

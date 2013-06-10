@@ -69,6 +69,7 @@
             // 
             // expensesSelect
             // 
+            this.expensesSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.expensesSelect.FormattingEnabled = true;
             this.expensesSelect.Location = new System.Drawing.Point(12, 25);
             this.expensesSelect.Name = "expensesSelect";
@@ -345,6 +346,7 @@
             this.cancelExpenseButton.TabIndex = 6;
             this.cancelExpenseButton.Text = "Annuler mes modifications";
             this.cancelExpenseButton.UseVisualStyleBackColor = true;
+            this.cancelExpenseButton.Click += new System.EventHandler(this.cancelExpenseButton_Click);
             // 
             // groupBox3
             // 
