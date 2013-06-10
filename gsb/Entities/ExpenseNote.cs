@@ -123,9 +123,10 @@ namespace gsb.Entities
             return expense;
         }
 
-        public bool RemoveExpenseOffPlan(ExpenseOffPlan expense)
+        public void RemoveExpenseOffPlan(ExpenseOffPlan expense)
         {
-            return this.expensesOffPlan.Remove(expense);
+            expense.Status = ExpenseState.Removed;
+            this.setModifiedStatus();
         }
 
         public override void Fill(Dictionary<string, object> row)
