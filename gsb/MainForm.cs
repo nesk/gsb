@@ -128,6 +128,8 @@ namespace gsb
             }
             else // sender is DateTimePicker
                 expenseOffPlan.Date = ((DateTimePicker)sender).Value;
+
+            this.RefreshControlsAvailability();
         }
 
         /*

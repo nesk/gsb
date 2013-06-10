@@ -50,7 +50,16 @@ namespace gsb.Entities
         // An expense note shouldn't be removed, this property must be rewritten.
         public new ExpenseState Status
         {
-            get { return this.status; }
+            get {
+                // This loop modifies the returned status if one of the off-plan expenses isn't marked as loaded
+                foreach (ExpenseOffPlan expense in this.expensesOffPlan)
+                {
+                    if (expense.Status != ExpenseState.Loaded)
+                        this.setModifiedStatus();
+                }
+
+                return this.status;
+            }
         }
 
         #region Data properties
@@ -86,7 +95,9 @@ namespace gsb.Entities
 
         public string State
         {
-            get { return this.state; }
+            get {
+                return this.state;
+            }
             set
             {
                 this.setModifiedStatus();
