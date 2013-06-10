@@ -267,6 +267,7 @@
             this.removeExpenseOPButton.TabIndex = 7;
             this.removeExpenseOPButton.Text = "-";
             this.removeExpenseOPButton.UseVisualStyleBackColor = true;
+            this.removeExpenseOPButton.Click += new System.EventHandler(this.removeExpenseOPButton_Click);
             // 
             // addExpenseOPButton
             // 

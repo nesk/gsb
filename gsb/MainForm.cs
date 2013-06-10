@@ -74,6 +74,23 @@ namespace gsb
             this.RefreshControlsAvailability();
         }
 
+        private void removeExpenseOPButton_Click(object sender, EventArgs e)
+        {
+            ExpenseNote expenseNote = (ExpenseNote)this.expensesSelect.SelectedItem;
+            ExpenseOffPlan expenseOffPlan = (ExpenseOffPlan)this.expensesOPList.SelectedItem;
+            int index = this.expensesOPList.SelectedIndex;
+
+            this.expensesOPList.Items.Remove(expenseOffPlan);
+            expenseNote.RemoveExpenseOffPlan(expenseOffPlan);
+
+            if (this.expensesOPList.Items.Count == index)
+                this.expensesOPList.SelectedIndex = index - 1;
+            else
+                this.expensesOPList.SelectedIndex = index;
+
+            this.RefreshControlsAvailability();
+        }
+
         private void saveExpenseButton_Click(object sender, EventArgs e)
         {
             ((ExpenseNote)this.expensesSelect.SelectedItem).Save();
