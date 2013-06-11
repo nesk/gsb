@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 
@@ -102,10 +103,13 @@ namespace gsb.Entities
 
             if (this.status == ExpenseState.New)
             {
-                const string query =
+                // Retrieves the proprietary function used by the current database to get the last id inserted
+                string lastIdFunc = ConfigurationManager.AppSettings[ConfigurationManager.AppSettings["db-type"] + "-lastid"];
+
+                string query =
                     "INSERT INTO LigneFraisHorsForfait(idVisiteur, mois, libelle, date, montant) VALUES " +
                     "(@userId, @month, @label, @date, @cost);" +
-                    "SELECT SCOPE_IDENTITY()";
+                    "SELECT " + lastIdFunc + "()";
 
                 cmd.CommandText = query;
                 cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, Database.Instance.UserId));

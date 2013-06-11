@@ -20,6 +20,8 @@ namespace gsb
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            this.loginButton.Enabled = false;
+            
             Database db = Database.Instance;
             UserConnectionState res = db.ConnectUser(this.loginText.Text, this.passwordText.Text);
 
@@ -31,6 +33,8 @@ namespace gsb
                 this.passwordText.Focus();
                 MessageBox.Show("Les identifiants spécifiés sont incorrects.");
             }
+
+            this.loginButton.Enabled = true;
         }
     }
 }
