@@ -116,8 +116,6 @@ namespace gsb.Entities
                 cmd.Parameters.Add(Database.CreateParameter("@cost", DbType.Decimal, this.cost));
 
                 this.id = (int)cmd.ExecuteScalar(); // Storing the id of the last insertion
-
-                return; // We must exit the method to avoid a call to the ExecuteNonQuery() method
             }
             else if (this.status == ExpenseState.Modified)
             {
@@ -142,7 +140,7 @@ namespace gsb.Entities
                 cmd.Parameters.Add(Database.CreateParameter("@id", DbType.Int32, this.id));
             }
 
-            if(this.status == ExpenseState.New || this.status == ExpenseState.Modified || this.status == ExpenseState.Removed)
+            if(this.status == ExpenseState.Modified || this.status == ExpenseState.Removed)
                 cmd.ExecuteNonQuery();
 
             // The entity has been saved, the status must be changed.
