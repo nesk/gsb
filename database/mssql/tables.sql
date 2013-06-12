@@ -5,7 +5,6 @@ CREATE TABLE FraisForfait (
   PRIMARY KEY (id)
 );
 
-
 CREATE TABLE Etat (
   id nvarchar(2) NOT NULL,
   libelle nvarchar(30) DEFAULT NULL,
@@ -25,7 +24,6 @@ CREATE TABLE Visiteur (
   PRIMARY KEY (id)
 );
 
-
 CREATE TABLE FicheFrais (
   idVisiteur nvarchar(4) NOT NULL,
   mois nvarchar(6) NOT NULL,
@@ -37,7 +35,6 @@ CREATE TABLE FicheFrais (
   FOREIGN KEY (idEtat) REFERENCES Etat(id),
   FOREIGN KEY (idVisiteur) REFERENCES Visiteur(id)
 );
-
 
 CREATE TABLE LigneFraisForfait (
   idVisiteur nvarchar(4) NOT NULL,

@@ -10,11 +10,9 @@ INSERT INTO Etat (id, libelle) VALUES
 ('CR', 'Fiche créée, saisie en cours'),
 ('VA', 'Validée et mise en paiement');
 
-INSERT INTO Visiteur (id, nom, prenom, login, mdp, adresse, cp, ville, dateEmbauche) VALUES
-('a1', 'Nom', 'Prénom', 'user1', 'user1', 'Adresse', '00000', 'Ville', '2000-01-01'),
-('a2', 'Nom', 'Prénom', 'user2', 'user2', 'Adresse', '00000', 'Ville', '2000-01-01'),
-('a131', 'Villechalane', 'Louis', 'lvillachane', 'jux7g', '8 rue des Charmes', '46000', 'Cahors', '2005-12-21'),
-('a17', 'Andre', 'David', 'dandre', 'oppg5', '1 rue Petit', '46200', 'Lalbenque', '1998-11-23'),
+INSERT INTO visiteur (id, nom, prenom, login, mdp, adresse, cp, ville, dateEmbauche) VALUES
+('a131', 'Villechalane', 'Louis', 'user1', 'user1', '8 rue des Charmes', '46000', 'Cahors', '2005-12-21'),
+('a17', 'Andre', 'David', 'user2', 'user2', '1 rue Petit', '46200', 'Lalbenque', '1998-11-23'),
 ('a55', 'Bedos', 'Christian', 'cbedos', 'gmhxd', '1 rue Peranud', '46250', 'Montcuq', '1995-01-12'),
 ('a93', 'Tusseau', 'Louis', 'ltusseau', 'ktp3s', '22 rue des Ternes', '46123', 'Gramat', '2000-05-01'),
 ('b13', 'Bentot', 'Pascal', 'pbentot', 'doyw1', '11 allée des Cerises', '46512', 'Bessines', '1992-07-09'),
