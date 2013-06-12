@@ -205,6 +205,8 @@ namespace gsb
 
             if (this.expensesSelect.Items.Count > 0)
                 this.expensesSelect.SelectedIndex = 0;
+            else
+                this.RefreshControlsAvailability();
         }
 
         private void LoadExpenseNote(ExpenseNote expense)
