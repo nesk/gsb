@@ -103,13 +103,10 @@ namespace gsb.Entities
 
             if (this.status == ExpenseState.New)
             {
-                // Retrieves the proprietary function used by the current database to get the last id inserted
-                string lastIdFunc = ConfigurationManager.AppSettings[ConfigurationManager.AppSettings["db-type"] + "-lastid"];
-
-                string query =
+                const string query =
                     "INSERT INTO LigneFraisHorsForfait(idVisiteur, mois, libelle, date, montant) VALUES " +
                     "(@userId, @month, @label, @date, @cost);" +
-                    "SELECT " + lastIdFunc + "()";
+                    "SELECT MAX(id) FROM LigneFraisHorsForfait";
 
                 cmd.CommandText = query;
                 cmd.Parameters.Add(Database.CreateParameter("@userId", DbType.String, Database.Instance.UserId));
@@ -118,7 +115,7 @@ namespace gsb.Entities
                 cmd.Parameters.Add(Database.CreateParameter("@date", DbType.Date, this.date));
                 cmd.Parameters.Add(Database.CreateParameter("@cost", DbType.Decimal, this.cost));
 
-                this.id = (int)(decimal)cmd.ExecuteScalar(); // Storing the id of the last insertion
+                this.id = (int)cmd.ExecuteScalar(); // Storing the id of the last insertion
 
                 return; // We must exit the method to avoid a call to the ExecuteNonQuery() method
             }
