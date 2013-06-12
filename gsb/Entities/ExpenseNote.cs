@@ -12,7 +12,8 @@ namespace gsb.Entities
          * Fields
          */
 
-        #region Data fields
+        #region Private data fields
+
         private string month = DateTime.Today.Year.ToString().PadLeft(4, '0') + DateTime.Today.Month.ToString().PadLeft(2, '0');
         private DateTime date = DateTime.Today;
         private int vouchersNb = 0;
@@ -22,6 +23,7 @@ namespace gsb.Entities
         private Dictionary<string, int> expensesInPlan = new Dictionary<string,int>();
         
         private List<ExpenseOffPlan> expensesOffPlan = new List<ExpenseOffPlan>();
+
         #endregion
 
         /*
@@ -62,7 +64,6 @@ namespace gsb.Entities
             }
         }
 
-        #region Data properties
         public DateTime Date
         {
             get { return this.date; }
@@ -114,7 +115,6 @@ namespace gsb.Entities
         {
             get { return this.expensesOffPlan.AsReadOnly(); }
         }
-        #endregion
 
         /*
          * Methods
@@ -232,6 +232,8 @@ namespace gsb.Entities
             return this.date.ToString("MMMM yyyy");
         }
 
+        #region Private methods
+
         private void LoadExpensesInPlan()
         {
             Database db = Database.Instance;
@@ -284,5 +286,7 @@ namespace gsb.Entities
             foreach (Dictionary<string, object> row in rows)
                 this.expensesOffPlan.Add(new ExpenseOffPlan(row));
         }
+
+        #endregion
     }
 }

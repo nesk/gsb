@@ -17,6 +17,8 @@ namespace gsb
          * Fields
          */
 
+        #region Private fields
+
         private static Database instance = null;
         private static readonly object padlock = new object();
         private static DbProviderFactory factory;
@@ -24,6 +26,8 @@ namespace gsb
         private DbConnection dbConnection;
         private Boolean userConnected = false;
         private string userId = null;
+
+        #endregion
 
         /*
          * Constructor

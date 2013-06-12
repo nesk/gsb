@@ -12,12 +12,14 @@ namespace gsb.Entities
          * Fields
          */
 
-        #region Data fields
+        #region Private data fields
+
         private int id;
         private string month;
         private string label = "Nouvel élément";
         private DateTime date = DateTime.Today;
         private decimal cost = 0;
+
         #endregion
 
         /*
@@ -38,7 +40,6 @@ namespace gsb.Entities
          * Properties
          */
 
-        #region Data properties
         public int Id
         {
             get { return this.id; }
@@ -78,7 +79,6 @@ namespace gsb.Entities
                 this.cost = value;
             }
         }
-        #endregion
 
         /*
          * Methods
